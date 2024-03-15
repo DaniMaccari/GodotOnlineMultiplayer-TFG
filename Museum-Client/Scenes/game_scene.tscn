@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbhptbyrkds2s"]
+
+[ext_resource type="PackedScene" uid="uid://bfnioxs4egnm8" path="res://Scenes/stage_test.tscn" id="1_1sq5x"]
+[ext_resource type="PackedScene" uid="uid://c42r2y8nxouqs" path="res://Scenes/player_test.tscn" id="2_erg62"]
+
+[node name="GameScene" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.600462, 0.799653, 0, -0.799653, 0.600462, 0, 0, 0)
+
+[node name="Stage" parent="." instance=ExtResource("1_1sq5x")]
+
+[node name="Player_test" parent="." instance=ExtResource("2_erg62")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.20911, 0, -8.27381)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.748481, 0.663156, 0, -0.663156, 0.748481, 0.383223, 18.385, 18.4861)

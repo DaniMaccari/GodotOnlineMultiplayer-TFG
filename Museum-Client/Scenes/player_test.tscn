@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://c42r2y8nxouqs"]
+
+[ext_resource type="Script" path="res://Scripts/player_test.gd" id="1_fn5w5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ab84f"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_yftjq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_n8ipi"]
+
+[node name="Player_test" type="CharacterBody3D"]
+collision_mask = 17
+script = ExtResource("1_fn5w5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_ab84f")
+
+[node name="body" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_yftjq")
+skeleton = NodePath("../..")
+
+[node name="eyes" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(0.7, 0, 0, 0, 0.25, 0, 0, 0, 0.4, 0, 0.490825, -0.480283)
+mesh = SubResource("BoxMesh_n8ipi")
