@@ -9,13 +9,13 @@ script = ExtResource("1_428x4")
 player_scene = ExtResource("2_erg62")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.600462, 0.799653, 0, -0.799653, 0.600462, 0, 0, 0)
+transform = Transform3D(0.0532074, 0.79852, -0.599612, 0, 0.600462, 0.799653, 0.998583, -0.0425474, 0.031949, 0, 6.46316, 0)
 
 [node name="Stage" parent="." instance=ExtResource("1_1sq5x")]
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.748481, 0.663156, 0, -0.663156, 0.748481, 0.383223, 18.385, 18.4861)
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://Scenes/player_test.tscn")
 spawn_path = NodePath("..")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.923545, 0.38349, 0, -0.38349, 0.923545, 0, 8.03976, 15.1164)

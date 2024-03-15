@@ -3,13 +3,18 @@ extends CharacterBody3D
 
 const SPEED = 8.0
 const JUMP_VELOCITY = 4.5
+var MOUSE_SENSITIVITY = 0.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
  
-func _enter_tree():
-	set_multiplayer_authority(name.to_int())
+@onready var camera = $Camera3D
+@onready var synchronizer = $MultiplayerSynchronizer
+
+func _ready():
+	synchronizer.set_multiplayer_authority(str(name).to_int())
+	camera.current = synchronizer.is_multiplayer_authority()
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -33,3 +38,12 @@ func _physics_process(delta):
 			velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+func _input(event):
+	if synchronizer.is_multiplayer_authority():
+		if event is InputEventKey and event.is_pressed() and event.keycode == KEY_ESCAPE:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE else Input.MOUSE_MODE_VISIBLE
+		if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			rotate_y(-deg_to_rad(event.relative.x) * MOUSE_SENSITIVITY)
+			synchronizer.y_rotation = rotation.y
+			camera.rotate_x(-deg_to_rad(event.relative.y) * MOUSE_SENSITIVITY)
