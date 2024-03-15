@@ -1,21 +1,30 @@
-extends Node
+extends Node3D
 
-var network = NetworkedMultiplayerENet.new()
-var max_players = 100 
+
+var MAX_CLIENTS = 100 
 var max_lobby_players = 10
-var port = 1909
+var PORT = 8080
+var network
+
+@export var player_scene: PackedScene
+#@export var player_scene: PackedScene
 
 func _ready():
 	start_server()
 
 func start_server():
-	network.create_server(port, max_players)
-	get_tree().network_peer = network
+	
+	multiplayer.peer_connected.connect(self._on_client_connected)
+	#disconnected escribir
+	
+	network = ENetMultiplayerPeer.new()
+	network.create_server(PORT, MAX_CLIENTS)
+	multiplayer.multiplayer_peer = network
+	#get_tree().network_peer = network
 	print("server is UP")
 
-	get_tree().connect("network_peer_connected", self, "_player_connected")
-	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _on_client_connected(client_id):
+	print("client ", str(client_id), " connected")
+	var player = player_scene.instantiate()
+	player.name = str(client_id)
+	call_deferred("add_child",player)

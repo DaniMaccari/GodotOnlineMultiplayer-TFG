@@ -1,10 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfnioxs4egnm8"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_37pma"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_jsupy"]
-
-[sub_resource type="PrismMesh" id="PrismMesh_ncn8d"]
+[gd_scene load_steps=4 format=3 uid="uid://bfnioxs4egnm8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fdnbn"]
 size = Vector3(14.9962, 6.47021, 1)
@@ -17,38 +11,6 @@ size = Vector3(39.0638, 0.923462, 39.1526)
 
 [node name="Stage" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.35704, 0, -7.1233)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
-mesh = SubResource("PlaneMesh_37pma")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(15, 0, 0, 0, 6, 0, 0, 0, 1, 0.271839, 3, 0)
-mesh = SubResource("BoxMesh_jsupy")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(-6.55671e-07, 0, 1, 0, 6, 0, -15, 0, -4.37114e-08, -0.728161, 3, 0)
-mesh = SubResource("BoxMesh_jsupy")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
-transform = Transform3D(-3.0598e-07, 0, 1, 0, 6, 0, -7, 0, -4.37114e-08, -0.728161, 3, 16)
-mesh = SubResource("BoxMesh_jsupy")
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
-transform = Transform3D(-3.0598e-07, 0, 1, 0, 6, 0, -7, 0, -4.37114e-08, -0.728161, 3, -16)
-mesh = SubResource("BoxMesh_jsupy")
-
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
-transform = Transform3D(7, 0, 0, 0, 6, 0, 0, 0, 1, -15.7282, 3, 0)
-mesh = SubResource("BoxMesh_jsupy")
-
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
-transform = Transform3D(7, 0, 0, 0, 6, 0, 0, 0, 1, 16.2718, 3, 0)
-mesh = SubResource("BoxMesh_jsupy")
-
-[node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
-transform = Transform3D(4.94975, 0, 1.9799, 0, 7, 0, -4.94975, 0, 1.9799, -16.1625, 3, -14.8373)
-mesh = SubResource("PrismMesh_ncn8d")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.265686, 2.73511, 0)
