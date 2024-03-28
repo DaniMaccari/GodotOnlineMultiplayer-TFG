@@ -15,7 +15,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	synchronizer.set_multiplayer_authority(str(name).to_int())
 	camera.current = synchronizer.is_multiplayer_authority()
-
+	pass
 func _physics_process(delta):
 	# Add the gravity.
 	if is_multiplayer_authority():
