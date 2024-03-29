@@ -12,7 +12,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.23657, 0)
 transform = Transform3D(0.176758, -0.984254, -7.33327e-09, 0.770638, 0.138396, 0.622064, -0.612269, -0.109955, 0.782967, 0, 5.60414, 0)
 
 [node name="Stage" parent="." instance=ExtResource("2_vo522")]
-
-[node name="Camera3D" type="Camera3D" parent="."]
-process_priority = -1
-transform = Transform3D(1, 0, 0, 0, 0.561246, 0.827649, 0, -0.827649, 0.561246, 0, 9.02031, 7.12836)
