@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbc4nsbg5kv04"]
+
+[ext_resource type="Script" path="res://Scripts/Menu_Test.gd" id="1_dwmi4"]
+
+[node name="Menu_Test" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dwmi4")
+
+[node name="host" type="Button" parent="."]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 73.0
+offset_right = 264.0
+offset_bottom = 140.0
+text = "HOST"
+
+[node name="join" type="Button" parent="."]
+layout_mode = 0
+offset_left = 324.0
+offset_top = 73.0
+offset_right = 477.0
+offset_bottom = 140.0
+text = "JOIN"
+
+[node name="start" type="Button" parent="."]
+layout_mode = 0
+offset_left = 535.0
+offset_top = 73.0
+offset_right = 688.0
+offset_bottom = 140.0
+text = "START"
+
+[connection signal="pressed" from="host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="start" to="." method="_on_start_pressed"]
