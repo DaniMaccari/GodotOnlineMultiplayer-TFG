@@ -5,6 +5,8 @@ extends Control
 var max_clients = 10
 var peer
 
+var playerNick = ""
+
 func _ready():
 	multiplayer.peer_connected.connect(PlayerJustConnected)
 	multiplayer.peer_disconnected.connect(PlayerJustDisconnected)
@@ -22,10 +24,23 @@ func PlayerJustDisconnected(id):
 # called only in client side
 func ConnectedToServer():
 	print("connected to SERVER")
+	SendplayerInformation.rpc_id(1, playerNick, multiplayer.get_unique_id())
 
 func ConnectionFailed():
 	print("connection FAILED")
 
+@rpc("any_peer")
+func SendplayerInformation(nickName, id):
+	if !GameManager.Players.has(id):
+		GameManager.Players[id] = {
+			"name": name,
+			"id": id,
+			"score": 0
+		}
+		
+	if multiplayer.is_server():
+		for i in GameManager.Players:
+			SendplayerInformation.rpc(GameManager.Players[i].name, i)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -42,6 +57,7 @@ func _on_host_pressed():
 	multiplayer.set_multiplayer_peer(peer)
 	print("waiting for players")
 	
+	SendplayerInformation(playerNick, multiplayer.get_unique_id())
 	pass # Replace with function body.
 
 
