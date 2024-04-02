@@ -8,7 +8,7 @@ func _ready():
 		var currentPlayer = PlayerScene.instantiate()
 		add_child(currentPlayer)
 		for spawn in get_tree().get_nodes_in_group("SpawnLocationPoint"):
-			if int(spawn.name) == index:
+			if spawn.name == str(index):
 				currentPlayer.global_position = spawn.global_position
 			index += 1
 			

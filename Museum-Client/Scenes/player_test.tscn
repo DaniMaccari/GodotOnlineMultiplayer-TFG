@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c42r2y8nxouqs"]
+[gd_scene load_steps=7 format=3 uid="uid://c42r2y8nxouqs"]
 
 [ext_resource type="Script" path="res://Scripts/player_movement.gd" id="1_npngp"]
 
@@ -11,6 +11,14 @@ height = 1.99817
 albedo_color = Color(0, 0.478431, 1, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_yftjq"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7eavb"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("CollisionShape3D/eyesPosition:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [node name="Player_test" type="CharacterBody3D"]
 collision_mask = 17
@@ -35,3 +43,6 @@ skeleton = NodePath("../..")
 
 [node name="PlayerCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52, 0)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_7eavb")
