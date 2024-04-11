@@ -12,11 +12,12 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 #var camera: Camera3D
 @onready var camera = $Camera3D
 
-func _ready():
-	
-	if is_multiplayer_authority(): return
+func _enter_tree():
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
 	
+func _ready():
+	
+	if not is_multiplayer_authority(): return
 	
 	camera.current = true
 	#is_local_player = (multiplayer.get_network_master() == multiplayer.get_unique_id())
