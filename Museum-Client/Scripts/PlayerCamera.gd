@@ -8,4 +8,4 @@ func _process(delta):
 		global_transform.basis = player.global_transform.basis
 
 func set_current_player(id):
-	
+	pass

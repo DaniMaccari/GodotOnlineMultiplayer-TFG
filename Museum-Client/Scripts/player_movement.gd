@@ -8,18 +8,18 @@ var MOUSE_SENSITIVITY = 0.5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-#@export var camera: Camera3D
+@export var camera: Camera3D
 #var camera: Camera3D
-@onready var camera = $Camera3D
+#@onready var camera = $Camera3D
 
 func _enter_tree():
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
 	
 func _ready():
 	
-	if not is_multiplayer_authority(): return
-	
-	camera.current = true
+	#????????
+	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
+		camera.current = true
 	#is_local_player = (multiplayer.get_network_master() == multiplayer.get_unique_id())
 
 func _physics_process(delta):
