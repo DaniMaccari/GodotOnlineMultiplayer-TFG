@@ -13,10 +13,12 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var camera = $Camera3D
 
 func _ready():
-	camera.current = true
+	
+	if is_multiplayer_authority(): return
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
 	
-	camera.current = false
+	
+	camera.current = true
 	#is_local_player = (multiplayer.get_network_master() == multiplayer.get_unique_id())
 
 func _physics_process(delta):
