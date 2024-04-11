@@ -5,7 +5,7 @@ var IP_ADDRESS = "127.0.0.1" #local IP
 var connected_peer_ids = []
 
 var local_player_character
-
+var player_character = preload("res://Scenes/player_test.tscn").instantiate()
 
 #var ip_address = "194.163.168.245" #myServer IP
 @export var player_scene: PackedScene
@@ -27,7 +27,6 @@ func start_client():
 
 func add_player_character(peer_id):
 	connected_peer_ids.append(peer_id)
-	var player_character = preload("res://Scenes/player_test.tscn").instantiate()
 	player_character.set_multiplayer_authority(peer_id)
 	add_child(player_character)
 	if peer_id == multiplayer.get_unique_id():

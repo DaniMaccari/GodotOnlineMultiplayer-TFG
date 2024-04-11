@@ -23,9 +23,10 @@ properties/2/path = NodePath(".:rotation")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
-[node name="Player_test" type="CharacterBody3D"]
+[node name="Player_test" type="CharacterBody3D" node_paths=PackedStringArray("camera")]
 collision_mask = 17
 script = ExtResource("1_npngp")
+camera = NodePath("PlayerCamera")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1, 0)
@@ -44,8 +45,8 @@ material_override = SubResource("StandardMaterial3D_crfh6")
 mesh = SubResource("CapsuleMesh_yftjq")
 skeleton = NodePath("../..")
 
+[node name="PlayerCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52, 0)
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_7eavb")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52, 0)
