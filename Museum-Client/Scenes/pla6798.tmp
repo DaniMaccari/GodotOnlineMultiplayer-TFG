@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://c42r2y8nxouqs"]
+
+[ext_resource type="Script" path="res://Scripts/player_movement.gd" id="1_npngp"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ab84f"]
+height = 1.99817
+
+[sub_resource type="BoxMesh" id="BoxMesh_n8ipi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_crfh6"]
+albedo_color = Color(0, 0.478431, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_yftjq"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7eavb"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("CollisionShape3D/eyesPosition:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="Player_test" type="CharacterBody3D" node_paths=PackedStringArray("camera")]
+collision_mask = 17
+script = ExtResource("1_npngp")
+camera = NodePath("Camera3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_ab84f")
+
+[node name="eyesPosition" type="Node3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.433333, 0)
+
+[node name="eyes" type="MeshInstance3D" parent="CollisionShape3D/eyesPosition"]
+transform = Transform3D(0.7, 0, 0, 0, 0.25, 0, 0, 0, 0.8, 0, 0.0574917, -0.194106)
+mesh = SubResource("BoxMesh_n8ipi")
+skeleton = NodePath("../..")
+
+[node name="body" type="MeshInstance3D" parent="CollisionShape3D"]
+material_override = SubResource("StandardMaterial3D_crfh6")
+mesh = SubResource("CapsuleMesh_yftjq")
+skeleton = NodePath("../..")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_7eavb")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52, 0)
