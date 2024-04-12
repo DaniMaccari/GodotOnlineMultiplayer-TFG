@@ -9,9 +9,14 @@ var MOUSE_SENSITIVITY = 0.5
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var myID
 
-@export var camera: Camera3D
-#var camera: Camera3D
-#@onready var camera = $Camera3D
+#@export var camera: Camera3D
+@onready var camera = $Camera3D
+@onready var raycast = $Camera3D/RayCast3D
+@export var myBody: MeshInstance3D
+
+#--player variables--
+var hasHandcuffs = true
+var isHandcuffed = false
 
 func _enter_tree():
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
@@ -27,9 +32,9 @@ func _ready():
 
 func _physics_process(delta):
 	
-	print("-", $MultiplayerSynchronizer.get_multiplayer_authority(), " ", multiplayer.get_unique_id())
+	#print("-", $MultiplayerSynchronizer.get_multiplayer_authority(), " ", multiplayer.get_unique_id())
 	#is this multiplayer authority (input is from this player)
-	if $MultiplayerSynchronizer.get_multiplayer_authority() == myID:
+	if $MultiplayerSynchronizer.get_multiplayer_authority() == myID && !isHandcuffed:
 		# Add the gravity.
 		if not is_on_floor():
 			velocity.y -= gravity * delta
@@ -59,5 +64,19 @@ func _input(event):
 	elif event is InputEventMouseMotion:
 		rotate_y(-deg_to_rad(event.relative.x) * MOUSE_SENSITIVITY)
 		camera.rotate_x(-deg_to_rad(event.relative.y) * MOUSE_SENSITIVITY)
-		#camera.rotation.x = clamp(camera.rotation.y, -PI/2, -PI/2)
-		$CollisionShape3D/eyesPosition.rotate_x(camera.rotation.y)
+		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
+	elif Input.is_action_just_pressed("ui_click"):
+		if hasHandcuffs and raycast.is_colliding():
+			var hit_player = raycast.get_collider()
+			hit_player.get_handcuffed.rpc_id(hit_player.get_multiplayer_authority())
+			hasHandcuffs = false
+
+@rpc("any_peer")
+func get_handcuffed():
+	isHandcuffed = true
+	
+	if myBody:
+		var material = myBody.material_override
+		material.albedo_color = Color(1, 0, 0)
+	#$CollisionShape3D/body.get_sur
+	
