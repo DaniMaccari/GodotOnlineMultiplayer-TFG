@@ -70,13 +70,13 @@ func _input(event):
 			hit_player.get_handcuffed.rpc_id(hit_player.get_multiplayer_authority())
 			hasHandcuffs = false
 
-@rpc("any_peer")
+@rpc("any_peer", "call_remote")
 func get_handcuffed():
 	isHandcuffed = true
 	print("Im handcuffed ", myID)
-	#
-	#if myBody:
-		#var material = myBody.material_override
-		#material.albedo_color = Color(1, 0, 0)
+	
+	#change body color
+	var material = myBody.material_override
+	material.albedo_color = Color(1, 0, 0)
 	#$CollisionShape3D/body.get_sur
 	

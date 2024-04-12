@@ -17,6 +17,7 @@ size = Vector3(39.0638, 0.923462, 39.1526)
 
 [node name="Stage" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.35704, 0, -7.1233)
+collision_layer = 16
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
