@@ -71,10 +71,10 @@ func _input(event):
 			hit_player.get_handcuffed.rpc_id(hit_player.get_multiplayer_authority())
 			hasHandcuffs = false
 
-@rpc("any_peer", "call_remote")
+@rpc("any_peer")
 func get_handcuffed():
 	isHandcuffed = true
-	print("Im handcuffed ", myID)
+	print("Im handcuffed ")
 	
 	#show handcuff icon/animation
 	redball.visible = true
