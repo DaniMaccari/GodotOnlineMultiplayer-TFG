@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c42r2y8nxouqs"]
+[gd_scene load_steps=9 format=3 uid="uid://c42r2y8nxouqs"]
 
 [ext_resource type="Script" path="res://Scripts/player_movement.gd" id="1_npngp"]
 
@@ -20,13 +20,20 @@ properties/1/replication_mode = 1
 properties/2/path = NodePath("Camera3D:rotation")
 properties/2/spawn = true
 properties/2/replication_mode = 1
+properties/3/path = NodePath("RedBall:visible")
+properties/3/spawn = true
+properties/3/replication_mode = 1
 
 [sub_resource type="BoxMesh" id="BoxMesh_n8ipi"]
 
-[node name="Player_test" type="CharacterBody3D" node_paths=PackedStringArray("myBody")]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5mfrn"]
+albedo_color = Color(1, 0.207843, 0.168627, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_kb1ud"]
+
+[node name="Player_test" type="CharacterBody3D"]
 collision_mask = 17
 script = ExtResource("1_npngp")
-myBody = NodePath("CollisionShape3D/body")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1, 0)
@@ -50,3 +57,8 @@ skeleton = NodePath("../../CollisionShape3D")
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0, 0, -5)
+
+[node name="RedBall" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.79403, 0)
+material_override = SubResource("StandardMaterial3D_5mfrn")
+mesh = SubResource("SphereMesh_kb1ud")

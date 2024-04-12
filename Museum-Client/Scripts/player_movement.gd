@@ -12,7 +12,7 @@ var myID
 #@export var camera: Camera3D
 @onready var camera = $Camera3D
 @onready var raycast = $Camera3D/RayCast3D
-@export var myBody: MeshInstance3D
+@onready var redball = $RedBall
 
 #--player variables--
 var hasHandcuffs = true
@@ -29,6 +29,7 @@ func _ready():
 		camera.current = true
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	redball.visible = false
 
 func _physics_process(delta):
 	
@@ -75,8 +76,7 @@ func get_handcuffed():
 	isHandcuffed = true
 	print("Im handcuffed ", myID)
 	
-	#change body color
-	var material = myBody.material_override
-	material.albedo_color = Color(1, 0, 0)
-	#$CollisionShape3D/body.get_sur
+	#show handcuff icon/animation
+	redball.visible = true
+	
 	
