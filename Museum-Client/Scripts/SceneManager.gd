@@ -4,6 +4,7 @@ extends Node3D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var index = 0
+	
 	for i in GameManager.Players:
 		var currentPlayer = PlayerScene.instantiate()
 		currentPlayer.name = str(GameManager.Players[i].id)
@@ -11,7 +12,7 @@ func _ready():
 		for spawn in get_tree().get_nodes_in_group("SpawnLocationPoint"):
 			if spawn.name == str(index):
 				currentPlayer.global_position = spawn.global_position
-			index += 1
+		index += 1
 			
 				
 	pass # Replace with function body.
