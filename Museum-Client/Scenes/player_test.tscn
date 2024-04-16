@@ -90,6 +90,7 @@ offset_bottom = 61.0
 text = "is_handcuffed"
 
 [node name="hasHandcuffLabel" type="Label" parent="Camera3D/Control"]
+layout_mode = 0
 offset_top = 25.0
 offset_right = 180.0
 offset_bottom = 86.0

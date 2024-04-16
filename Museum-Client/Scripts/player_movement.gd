@@ -20,6 +20,7 @@ var myID
 #--player variables--
 var hasHandcuffs = true
 var isHandcuffed = false
+var badGuy = false
 
 func _enter_tree():
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
@@ -67,17 +68,25 @@ func _input(event):
 
 	if Input.is_action_just_pressed("ui_quit"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
 	elif event is InputEventMouseMotion:
 		rotate_y(-deg_to_rad(event.relative.x) * MOUSE_SENSITIVITY)
 		camera.rotate_x(-deg_to_rad(event.relative.y) * MOUSE_SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
-	elif Input.is_action_just_pressed("ui_click"):
-		if hasHandcuffs and raycast.is_colliding():
+	
+	elif Input.is_action_just_pressed("ui_handcuffs"):
+		if hasHandcuffs and raycast.is_colliding(): #player layer -> 1
 			var hit_player = raycast.get_collider()
 			print(hit_player.get_name())
 			hit_player.get_handcuffed.rpc_id(hit_player.get_name().to_int()) #multiplayer.get_unique_id()
-			print(hit_player.get_multiplayer_authority())
+			#print(hit_player.get_multiplayer_authority())
 			hasHandcuffs = false
+		
+	elif Input.is_action_just_pressed("ui_paint"):
+		if badGuy and raycast.is_colliding(): #cuadro layer -> 2
+			#play animation 2-4 segs
+			var hit_paint = raycast.get_collider()
+			
 
 @rpc("any_peer")
 func get_handcuffed():
