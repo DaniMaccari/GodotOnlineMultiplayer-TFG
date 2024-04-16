@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://c42r2y8nxouqs"]
+[gd_scene load_steps=10 format=3 uid="uid://c42r2y8nxouqs"]
 
 [ext_resource type="Script" path="res://Scripts/player_movement.gd" id="1_npngp"]
+[ext_resource type="Texture2D" uid="uid://b22lrvck6kviv" path="res://Assets/circle_03.png" id="2_tvcu8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ab84f"]
 height = 1.99817
@@ -57,6 +58,17 @@ skeleton = NodePath("../../CollisionShape3D")
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0, 0, -5)
+
+[node name="TextureRect" type="TextureRect" parent="Camera3D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.02, 0.02)
+pivot_offset = Vector2(576, 324)
+texture = ExtResource("2_tvcu8")
+stretch_mode = 5
 
 [node name="RedBall" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.79403, 0)

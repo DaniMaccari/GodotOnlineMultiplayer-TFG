@@ -35,7 +35,8 @@ func _physics_process(delta):
 	
 	#print("-", $MultiplayerSynchronizer.get_multiplayer_authority(), " ", multiplayer.get_unique_id())
 	#is this multiplayer authority (input is from this player)
-	if $MultiplayerSynchronizer.get_multiplayer_authority() == myID && !isHandcuffed:
+	#if $MultiplayerSynchronizer.get_multiplayer_authority() == myID && !isHandcuffed:
+	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id() && !isHandcuffed:
 		# Add the gravity.
 		if not is_on_floor():
 			velocity.y -= gravity * delta
@@ -74,7 +75,8 @@ func _input(event):
 @rpc("any_peer")
 func get_handcuffed():
 	isHandcuffed = true
-	print("Im handcuffed ")
+	hasHandcuffs = false
+	print("Im handcuffed ", multiplayer.get_unique_id())
 	
 	#show handcuff icon/animation
 	redball.visible = true
