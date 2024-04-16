@@ -13,6 +13,9 @@ var myID
 @onready var camera = $Camera3D
 @onready var raycast = $Camera3D/RayCast3D
 @onready var redball = $RedBall
+@onready var isLabel = $Camera3D/Control/handcuffedLabel
+@onready var hasLabel = $Camera3D/Control/hasHandcuffLabel
+
 
 #--player variables--
 var hasHandcuffs = true
@@ -30,12 +33,14 @@ func _ready():
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	redball.visible = false
-
+	
 func _physics_process(delta):
 	
 	#print("-", $MultiplayerSynchronizer.get_multiplayer_authority(), " ", multiplayer.get_unique_id())
 	#is this multiplayer authority (input is from this player)
 	#if $MultiplayerSynchronizer.get_multiplayer_authority() == myID && !isHandcuffed:
+	isLabel.text = ("is_handcuffed "+ str(isHandcuffed) )
+	hasLabel.text = ("has_handcuffs "+ str(hasHandcuffs) )
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id() && !isHandcuffed:
 		# Add the gravity.
 		if not is_on_floor():
@@ -76,9 +81,9 @@ func _input(event):
 func get_handcuffed():
 	isHandcuffed = true
 	hasHandcuffs = false
-	print("Im handcuffed ", multiplayer.get_unique_id())
 	
 	#show handcuff icon/animation
 	redball.visible = true
+	print("Im handcuffed ", multiplayer.get_unique_id())
 	
 	

@@ -63,12 +63,34 @@ target_position = Vector3(0, 0, -5)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 472.0
+offset_bottom = 472.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.02, 0.02)
 pivot_offset = Vector2(576, 324)
 texture = ExtResource("2_tvcu8")
 stretch_mode = 5
+
+[node name="Control" type="Control" parent="Camera3D"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="handcuffedLabel" type="Label" parent="Camera3D/Control"]
+layout_mode = 0
+offset_right = 180.0
+offset_bottom = 61.0
+text = "is_handcuffed"
+
+[node name="hasHandcuffLabel" type="Label" parent="Camera3D/Control"]
+offset_top = 25.0
+offset_right = 180.0
+offset_bottom = 86.0
+text = "has_handcuff"
 
 [node name="RedBall" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.79403, 0)
