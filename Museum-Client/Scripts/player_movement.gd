@@ -74,7 +74,9 @@ func _input(event):
 	elif Input.is_action_just_pressed("ui_click"):
 		if hasHandcuffs and raycast.is_colliding():
 			var hit_player = raycast.get_collider()
-			hit_player.get_handcuffed.rpc_id(hit_player.get_multiplayer_authority())
+			print(hit_player.get_name())
+			hit_player.get_handcuffed.rpc_id(hit_player.get_name().to_int()) #multiplayer.get_unique_id()
+			print(hit_player.get_multiplayer_authority())
 			hasHandcuffs = false
 
 @rpc("any_peer")
