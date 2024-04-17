@@ -20,6 +20,7 @@ func _ready():
 
 
 func VandalicePainting():
+	print("paint_script -", "PAINTINGG")
 	paintTexture.material_override.texture = ResourceLoader.load(allTextures[paintID][1])
 	#set in the singleton this paint to VANDALICED TRUE
 	pass
