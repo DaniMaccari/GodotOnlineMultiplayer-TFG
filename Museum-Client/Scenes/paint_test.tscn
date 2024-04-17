@@ -11,15 +11,16 @@ albedo_color = Color(0.74902, 0.341176, 0.0980392, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_blxnr"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a3kb2"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lqk0d"]
 albedo_texture = ExtResource("2_snptt")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_j1oh6"]
 
-[node name="Paint_test" type="StaticBody3D"]
+[node name="Paint_test" type="StaticBody3D" node_paths=PackedStringArray("paintTexture")]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_whsx7")
+paintTexture = NodePath("CollisionShape3D/pintura")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_vnk53")
@@ -33,7 +34,7 @@ mesh = SubResource("BoxMesh_blxnr")
 [node name="pintura" type="MeshInstance3D" parent="CollisionShape3D"]
 transform = Transform3D(0.45, 0, 0, 0, -4.37114e-08, -0.45, 0, 1, -1.96701e-08, 0, 0, 0.03)
 layers = 2
-material_override = SubResource("StandardMaterial3D_a3kb2")
+material_override = SubResource("StandardMaterial3D_lqk0d")
 mesh = SubResource("PlaneMesh_j1oh6")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

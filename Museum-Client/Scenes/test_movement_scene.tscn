@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://qu5ogw1k4hkr"]
+[gd_scene load_steps=5 format=3 uid="uid://qu5ogw1k4hkr"]
 
 [ext_resource type="Script" path="res://Scripts/SceneManager.gd" id="1_cc8ak"]
 [ext_resource type="PackedScene" uid="uid://c42r2y8nxouqs" path="res://Scenes/player_test.tscn" id="1_rsbxd"]
 [ext_resource type="PackedScene" uid="uid://bfnioxs4egnm8" path="res://Scenes/stage_test.tscn" id="2_vo522"]
+[ext_resource type="PackedScene" uid="uid://3r20sthoav0r" path="res://Scenes/paint_test.tscn" id="4_aspu1"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_cc8ak")
@@ -26,3 +27,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 5, 3)
 
 [node name="3" type="Node3D" parent="SpawnLocation" groups=["SpawnLocationPoint"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, -16)
+
+[node name="Paint_test" parent="." instance=ExtResource("4_aspu1")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -2.34999, 3.15549, -6.6233)

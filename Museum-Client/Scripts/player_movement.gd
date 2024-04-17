@@ -85,7 +85,9 @@ func _input(event):
 	elif Input.is_action_just_pressed("ui_paint"):
 		if badGuy and raycast.is_colliding(): #cuadro layer -> 2
 			#play animation 2-4 segs
-			var hit_paint = raycast.get_collider()
+			var detected = raycast.get_collider()
+			if detected is Paint:
+				detected.VandalicePainting()
 			
 
 @rpc("any_peer")

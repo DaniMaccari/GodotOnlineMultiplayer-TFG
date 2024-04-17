@@ -59,6 +59,7 @@ skeleton = NodePath("../../CollisionShape3D")
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 target_position = Vector3(0, 0, -5)
+collision_mask = 3
 hit_from_inside = true
 hit_back_faces = false
 
