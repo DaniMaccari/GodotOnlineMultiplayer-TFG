@@ -15,12 +15,12 @@ var lastFrame
 func _ready():
 	paintID = 0 #number added when games start
 	
-	paintTexture.material_override.texture(allTextures[paintID][0])
+	paintTexture.material_override.texture = ResourceLoader.load(allTextures[paintID][0])
 	#paintTexture.material_override.set_texture(allTextures[paintID][0])
 
 
 func VandalicePainting():
-	paintTexture.set_texture(allTextures[paintID][1])
+	paintTexture.material_override.texture = ResourceLoader.load(allTextures[paintID][1])
 	#set in the singleton this paint to VANDALICED TRUE
 	pass
 

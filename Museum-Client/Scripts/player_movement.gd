@@ -20,7 +20,7 @@ var myID
 #--player variables--
 var hasHandcuffs = true
 var isHandcuffed = false
-var badGuy = false
+var badGuy = true #set randomlly at the beggining
 
 func _enter_tree():
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
@@ -77,6 +77,7 @@ func _input(event):
 	elif Input.is_action_just_pressed("ui_handcuffs"):
 		if hasHandcuffs and raycast.is_colliding(): #player layer -> 1
 			var hit_player = raycast.get_collider()
+			if hit_player is Paint: return
 			print(hit_player.get_name())
 			hit_player.get_handcuffed.rpc_id(hit_player.get_name().to_int()) #multiplayer.get_unique_id()
 			#print(hit_player.get_multiplayer_authority())
@@ -85,8 +86,10 @@ func _input(event):
 	elif Input.is_action_just_pressed("ui_paint"):
 		if badGuy and raycast.is_colliding(): #cuadro layer -> 2
 			#play animation 2-4 segs
+			
 			var detected = raycast.get_collider()
 			if detected is Paint:
+				print("player_movement -", "VANDALIZEE")
 				detected.VandalicePainting()
 			
 
