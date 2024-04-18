@@ -15,8 +15,10 @@ var lastFrame
 @onready var yesPainted : MeshInstance3D = $CollisionShape3D/pintura1
 
 func _ready():
-	paintID = 1 #number added when games start
 	
+	paintID = 1 #number added when games start
+	#$MultiplayerSynchronizer.set_multiplayer_authority( 9000 + paintID)
+		
 	notPainted.visible = true
 	yesPainted.visible = false
 	#paintTexture.material_override.set_texture(allTextures[paintID][0])

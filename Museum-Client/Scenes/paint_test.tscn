@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://3r20sthoav0r"]
 
 [ext_resource type="Script" path="res://Scripts/paint_script.gd" id="1_whsx7"]
-[ext_resource type="Texture2D" uid="uid://cvtobwwjq0kak" path="res://paintTextures/paintTest_2a.png" id="2_eem4c"]
-[ext_resource type="Texture2D" uid="uid://cknfatwj4gstk" path="res://paintTextures/paintTest_2b.png" id="3_8iym4"]
+[ext_resource type="Texture2D" uid="uid://tweh3k8pguqr" path="res://paintTextures/paintTest_1a.png" id="2_snptt"]
+[ext_resource type="Texture2D" uid="uid://73rre8pfopj2" path="res://paintTextures/paintTest_1b.png" id="3_gc4de"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vnk53"]
 size = Vector3(1, 1, 0.048584)
@@ -12,21 +12,21 @@ albedo_color = Color(0.74902, 0.341176, 0.0980392, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_blxnr"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ygs1s"]
-albedo_texture = ExtResource("2_eem4c")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qp4qs"]
+albedo_texture = ExtResource("2_snptt")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_j1oh6"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_emwpt"]
-albedo_texture = ExtResource("3_8iym4")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5a3is"]
+albedo_texture = ExtResource("3_gc4de")
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_cho3j"]
 properties/0/path = NodePath("CollisionShape3D/pintura0:visible")
 properties/0/spawn = true
-properties/0/replication_mode = 1
+properties/0/replication_mode = 2
 properties/1/path = NodePath("CollisionShape3D/pintura1:visible")
 properties/1/spawn = true
-properties/1/replication_mode = 1
+properties/1/replication_mode = 2
 
 [node name="Paint_test" type="StaticBody3D" node_paths=PackedStringArray("paintTexture")]
 collision_layer = 2
@@ -47,13 +47,13 @@ mesh = SubResource("BoxMesh_blxnr")
 transform = Transform3D(0.45, 0, 0, 0, -4.37114e-08, -0.45, 0, 1, -1.96701e-08, 0, 0, 0.03)
 visible = false
 layers = 2
-material_override = SubResource("StandardMaterial3D_ygs1s")
+material_override = SubResource("StandardMaterial3D_qp4qs")
 mesh = SubResource("PlaneMesh_j1oh6")
 
 [node name="pintura1" type="MeshInstance3D" parent="CollisionShape3D"]
 transform = Transform3D(0.45, 0, 0, 0, -4.37114e-08, -0.45, 0, 1, -1.96701e-08, 0, 0, 0.03)
 layers = 2
-material_override = SubResource("StandardMaterial3D_emwpt")
+material_override = SubResource("StandardMaterial3D_5a3is")
 mesh = SubResource("PlaneMesh_j1oh6")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
