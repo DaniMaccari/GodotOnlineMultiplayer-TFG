@@ -90,7 +90,7 @@ func _input(event):
 			var detected = raycast.get_collider()
 			if detected is Paint:
 				print("player_movement -", "VANDALIZEE")
-				detected.VandalicePainting()
+				detected.VandalicePainting.rpc()
 			
 
 @rpc("any_peer")
