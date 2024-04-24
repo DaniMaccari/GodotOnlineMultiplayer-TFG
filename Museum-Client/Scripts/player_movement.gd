@@ -8,6 +8,8 @@ var MOUSE_SENSITIVITY = 0.5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var myID
+var syncPos = Vector3(0, 0, 0)
+
 
 #@export var camera: Camera3D
 @onready var camera = $Camera3D
@@ -46,11 +48,12 @@ func _physics_process(delta):
 		# Add the gravity.
 		if not is_on_floor():
 			velocity.y -= gravity * delta
-
+	
 		# Handle jump.
 		if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 			velocity.y = JUMP_VELOCITY
-
+		
+		syncPos = global_position
 		# Get the input direction and handle the movement/deceleration.
 		# As good practice, you should replace UI actions with custom gameplay actions.
 		var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -63,6 +66,9 @@ func _physics_process(delta):
 			velocity.z = move_toward(velocity.z, 0, SPEED)
 
 		move_and_slide()
+	
+	#else:
+	#	global_position = global_position.lerp(syncPos, .5)
 
 func _input(event):
 
