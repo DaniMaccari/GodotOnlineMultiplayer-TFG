@@ -12,6 +12,9 @@ func _ready():
 	multiplayer.peer_disconnected.connect(PlayerJustDisconnected)
 	multiplayer.connected_to_server.connect(ConnectedToServer)
 	multiplayer.connection_failed.connect(ConnectionFailed)
+	
+	if "--server" in OS.get_cmdline_args(): #si es iniciado con esta linea de comando
+		hostGame()
 	pass # Replace with function body.
 
 # called on both sides
@@ -45,8 +48,7 @@ func SendplayerInformation(nickName, id):
 func _process(delta):
 	pass
 
-
-func _on_host_pressed():
+func hostGame():
 	peer = ENetMultiplayerPeer.new()
 	var error = peer.create_server(PORT, max_clients)
 	if error != OK:
@@ -56,10 +58,12 @@ func _on_host_pressed():
 	
 	multiplayer.set_multiplayer_peer(peer)
 	print("waiting for players")
-	
-	SendplayerInformation(playerNick, multiplayer.get_unique_id())
-	pass # Replace with function body.
 
+
+func _on_host_pressed():
+	hostGame()
+	SendplayerInformation(playerNick, multiplayer.get_unique_id())
+	pass
 
 func _on_join_pressed():
 	peer = ENetMultiplayerPeer.new()
