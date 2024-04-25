@@ -9,6 +9,7 @@ var MOUSE_SENSITIVITY = 0.5
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var myID
 var syncPos = Vector3(0, 0, 0)
+var syncRot = 0
 
 
 #@export var camera: Camera3D
@@ -44,13 +45,16 @@ func _physics_process(delta):
 	#if $MultiplayerSynchronizer.get_multiplayer_authority() == myID && !isHandcuffed:
 	isLabel.text = ("is_handcuffed "+ str(isHandcuffed) )
 	hasLabel.text = ("has_handcuffs "+ str(hasHandcuffs) )
-	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id() && !isHandcuffed:
+	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
+		
+		if isHandcuffed:
+			return
 		# Add the gravity.
 		if not is_on_floor():
 			velocity.y -= gravity * delta
 	
 		# Handle jump.
-		if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		if Input.is_action_just_pressed("ui_jump") and is_on_floor():
 			velocity.y = JUMP_VELOCITY
 		
 		syncPos = global_position
@@ -67,8 +71,9 @@ func _physics_process(delta):
 
 		move_and_slide()
 	
-	#else:
-	#	global_position = global_position.lerp(syncPos, .5)
+	else:
+		syncPos = global_position.lerp(syncPos, 0.5)
+		
 
 func _input(event):
 

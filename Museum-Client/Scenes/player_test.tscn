@@ -13,7 +13,7 @@ albedo_color = Color(0, 0.478431, 1, 1)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7eavb"]
 properties/0/path = NodePath(".:position")
-properties/0/spawn = true
+properties/0/spawn = false
 properties/0/replication_mode = 1
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
@@ -23,7 +23,10 @@ properties/2/spawn = true
 properties/2/replication_mode = 1
 properties/3/path = NodePath("RedBall:visible")
 properties/3/spawn = true
-properties/3/replication_mode = 1
+properties/3/replication_mode = 2
+properties/4/path = NodePath(".:syncPos")
+properties/4/spawn = true
+properties/4/replication_mode = 1
 
 [sub_resource type="BoxMesh" id="BoxMesh_n8ipi"]
 
@@ -46,8 +49,8 @@ mesh = SubResource("CapsuleMesh_yftjq")
 skeleton = NodePath("../..")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_interval = 0.05
-delta_interval = 0.05
+replication_interval = 0.03
+delta_interval = 0.03
 replication_config = SubResource("SceneReplicationConfig_7eavb")
 
 [node name="Camera3D" type="Camera3D" parent="."]
