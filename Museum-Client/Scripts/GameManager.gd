@@ -33,6 +33,16 @@ func selectBadGuys():
 	#send info to all players
 	for player in Players:
 		if playerCounter == badGuysPos[numBadGuys]:
-			Players[player].badguy = true
-			print(Players[player])
-		#rpc_id(Players[player].id, "setBadGuy", Players[player].badguy)
+			setBadGuyDictionary.rpc(player)
+		playerCounter += 1
+
+	print(Players)
+
+@rpc("any_peer", "call_local")
+func setBadGuyDictionary(thisPlayer):
+	Players[thisPlayer].badguy = true
+	print(Players[thisPlayer])
+	pass
+
+
+

@@ -24,10 +24,11 @@ var syncRot = 0
 #--player variables--
 var hasHandcuffs = true
 var isHandcuffed = false
-var badGuy = false #set randomlly at the beggining
+var badGuy #= false #set randomlly at the beggining
 
 func _enter_tree():
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
+	setBadGuy(GameManager.Players[(str(self.name)).to_int()].badguy)
 	
 func _ready():
 	
@@ -105,7 +106,7 @@ func _input(event):
 				detected.VandalicePainting.rpc()
 			
 
-@rpc("any_peer")
+@rpc("any_peer", "call_remote")
 func get_handcuffed():
 	isHandcuffed = true
 	hasHandcuffs = false
@@ -118,10 +119,11 @@ func get_handcuffed():
 func setBadGuy(role):
 	badGuy = role
 	
+	#roleLabel.text = ""
 	if role:
-		roleLabel.text = "you are a VANDAL, spary the paintings"
+		roleLabel.text = ("you are a VANDAL")
 	else:
-		roleLabel.text = "you are a GUARD, save the paintings"
+		roleLabel.text = str(myID)# + " you are a GUARD"
 
 
 
