@@ -46,10 +46,10 @@ func _physics_process(delta):
 	#print("-", $MultiplayerSynchronizer.get_multiplayer_authority(), " ", multiplayer.get_unique_id())
 	#is this multiplayer authority (input is from this player)
 	#if $MultiplayerSynchronizer.get_multiplayer_authority() == myID && !isHandcuffed:
-	isLabel.text = ("is_handcuffed "+ str(isHandcuffed) )
-	hasLabel.text = ("has_handcuffs "+ str(hasHandcuffs) )
+	
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
-		
+		isLabel.text = ("is_handcuffed "+ str(isHandcuffed) )
+		hasLabel.text = ("has_handcuffs "+ str(hasHandcuffs) )
 		if isHandcuffed:
 			return
 		# Add the gravity.
@@ -116,11 +116,13 @@ func get_handcuffed():
 	redball.visible = true
 	print("Im handcuffed ", multiplayer.get_unique_id())
 
-#@rpc("any_peer")
+
 func setBadGuy(role):
+	if $MultiplayerSynchronizer.get_multiplayer_authority() != multiplayer.get_unique_id():
+		return
 	badGuy = role
 	print("setBadGuy ",myID, role)
-	#roleLabel.text = ""
+	roleLabel.text = ""
 	if role:
 		roleLabel.text = "you are a VANDAL"
 	else:
