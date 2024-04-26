@@ -120,10 +120,10 @@ func setBadGuy(role):
 	badGuy = role
 	
 	#roleLabel.text = ""
-	if role:
-		roleLabel.text = ("you are a VANDAL")
-	else:
-		roleLabel.text = str(myID)# + " you are a GUARD"
+	#if role:
+		#roleLabel.text = ("you are a VANDAL")
+	#else:
+		#roleLabel.text = str(myID)# + " you are a GUARD"
 
 
 
