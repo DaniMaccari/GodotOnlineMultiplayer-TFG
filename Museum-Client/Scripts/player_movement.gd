@@ -28,7 +28,7 @@ var badGuy #= false #set randomlly at the beggining
 
 func _enter_tree():
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
-	setBadGuy(GameManager.Players[(str(self.name)).to_int()].badguy)
+	
 	
 func _ready():
 	
@@ -36,6 +36,7 @@ func _ready():
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		myID = multiplayer.get_unique_id()
 		camera.current = true
+	setBadGuy(GameManager.Players[(str(self.name)).to_int()].badguy)
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	redball.visible = false
@@ -118,12 +119,12 @@ func get_handcuffed():
 #@rpc("any_peer")
 func setBadGuy(role):
 	badGuy = role
-	
+	print("setBadGuy ",myID, role)
 	#roleLabel.text = ""
-	#if role:
-		#roleLabel.text = ("you are a VANDAL")
-	#else:
-		#roleLabel.text = str(myID)# + " you are a GUARD"
+	if role:
+		roleLabel.text = "you are a VANDAL"
+	else:
+		roleLabel.text = " you are a GUARD"
 
 
 
