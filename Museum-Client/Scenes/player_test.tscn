@@ -102,6 +102,12 @@ offset_right = 180.0
 offset_bottom = 86.0
 text = "has_handcuff"
 
+[node name="roleLabel" type="Label" parent="Camera3D/Control"]
+layout_mode = 0
+offset_top = 56.0
+offset_right = 409.0
+offset_bottom = 114.0
+
 [node name="RedBall" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.79403, 0)
 material_override = SubResource("StandardMaterial3D_5mfrn")

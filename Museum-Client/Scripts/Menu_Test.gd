@@ -1,8 +1,8 @@
 extends Control
 
-@export var ADDRESS = "192.168.1.143" #127.0.0.1
+@export var ADDRESS = "127.0.0.1" #127.0.0.1 local IP
 @export var PORT = 8080
-var max_clients = 10
+var max_clients = 8
 var peer
 
 var playerNick = ""
@@ -23,6 +23,7 @@ func PlayerJustConnected(id):
 
 func PlayerJustDisconnected(id):
 	print("player disconnected", id)
+	#erase player from game
 
 # called only in client side
 func ConnectedToServer():
@@ -36,14 +37,16 @@ func ConnectionFailed():
 func SendplayerInformation(nickName, id):
 	if !GameManager.Players.has(id):
 		GameManager.Players[id] = {
-			"name": name,
+			"name": nickName,
 			"id": id,
-			"score": 0
+			"score": 0,
+			"badguy": false
 		}
 		
 	if multiplayer.is_server():
 		for i in GameManager.Players:
 			SendplayerInformation.rpc(GameManager.Players[i].name, i)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -84,4 +87,5 @@ func StartGame():
 	var scene = load("res://Scenes/test_movement_scene.tscn").instantiate()
 	get_tree().root.add_child(scene)
 	self.hide()
+	GameManager.selectBadGuys()
 	

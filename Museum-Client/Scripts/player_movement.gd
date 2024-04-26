@@ -18,12 +18,13 @@ var syncRot = 0
 @onready var redball = $RedBall
 @onready var isLabel = $Camera3D/Control/handcuffedLabel
 @onready var hasLabel = $Camera3D/Control/hasHandcuffLabel
+@onready var roleLabel = $Camera3D/Control/roleLabel
 
 
 #--player variables--
 var hasHandcuffs = true
 var isHandcuffed = false
-var badGuy = true #set randomlly at the beggining
+var badGuy = false #set randomlly at the beggining
 
 func _enter_tree():
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
@@ -112,5 +113,16 @@ func get_handcuffed():
 	#show handcuff icon/animation
 	redball.visible = true
 	print("Im handcuffed ", multiplayer.get_unique_id())
+
+@rpc("any_peer")
+func setBadGuy(role):
+	badGuy = role
 	
-	
+	if role:
+		roleLabel.text = "you are a VANDAL, spary the paintings"
+	else:
+		roleLabel.text = "you are a GUARD, save the paintings"
+
+
+
+
