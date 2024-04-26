@@ -84,8 +84,9 @@ func _on_start_pressed():
 
 @rpc("any_peer", "call_local", "reliable")
 func StartGame():
+	GameManager.selectBadGuys()
 	var scene = load("res://Scenes/test_movement_scene.tscn").instantiate()
 	get_tree().root.add_child(scene)
 	self.hide()
-	GameManager.selectBadGuys()
+	
 	

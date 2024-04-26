@@ -114,7 +114,7 @@ func get_handcuffed():
 	redball.visible = true
 	print("Im handcuffed ", multiplayer.get_unique_id())
 
-@rpc("any_peer")
+#@rpc("any_peer")
 func setBadGuy(role):
 	badGuy = role
 	

@@ -28,11 +28,11 @@ func selectBadGuys():
 		elif badGuysPos[0] != setRandom:
 			badGuysPos[1] = setRandom
 			numBadGuys -=1
-	
+	print(badGuysPos)
 	var playerCounter = 0
 	#send info to all players
 	for player in Players:
 		if playerCounter == badGuysPos[numBadGuys]:
 			Players[player].badguy = true
 			print(Players[player])
-		rpc_id(Players[player].id, "setBadGuy", Players[player].badguy)
+		#rpc_id(Players[player].id, "setBadGuy", Players[player].badguy)
