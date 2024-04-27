@@ -118,7 +118,7 @@ func get_handcuffed():
 	#show handcuff icon/animation
 	redball.visible = true
 	print("Im handcuffed ", multiplayer.get_unique_id())
-	GameManager.Players[(str(self.name)).to_int()].handcuffed = true
+	GameManager.HandCuffPlayer.rpc((str(self.name)).to_int()) #update handcuffed
 	
 	var badGuysLeft = false
 	for i in GameManager.Players:
