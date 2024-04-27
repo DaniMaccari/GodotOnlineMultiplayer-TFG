@@ -1,6 +1,8 @@
 extends Node
 
-var Players = {}
+var Players = {} #dictionary
+var Paintings = {}
+var numPaintings = 0
 
 func _ready():
 	pass # Replace with function body.

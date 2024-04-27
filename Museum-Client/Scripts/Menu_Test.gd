@@ -24,6 +24,9 @@ func PlayerJustConnected(id):
 func PlayerJustDisconnected(id):
 	print("player disconnected", id)
 	#erase player from game
+	var player = get_node_or_null(str(id))
+	if player:
+		player.queue_free()
 
 # called only in client side
 func ConnectedToServer():

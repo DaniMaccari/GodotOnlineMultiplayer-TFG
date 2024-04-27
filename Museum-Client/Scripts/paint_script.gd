@@ -36,6 +36,21 @@ func _process(delta):
 func VandalicePainting():
 	print("paint_script -", "PAINTINGG")
 	vandalized = true
+	GameManager.Paintings[str(self.name)].isVandalized = true
+	
+	var countVandalized = 0
+	for i in GameManager.Paintings:
+		if GameManager.Paintings[i].isVandalized == true:
+			countVandalized += 1
+	
+	if countVandalized >= GameManager.Paintings.size():
+		#VANDALS WIN
+		print("VANDALS WIN game over")
+	
+
+
+
+
 
 
 

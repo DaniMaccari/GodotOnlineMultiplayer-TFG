@@ -29,6 +29,7 @@ properties/1/spawn = true
 properties/1/replication_mode = 2
 
 [node name="Paint_test" type="StaticBody3D" node_paths=PackedStringArray("paintTexture")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_whsx7")

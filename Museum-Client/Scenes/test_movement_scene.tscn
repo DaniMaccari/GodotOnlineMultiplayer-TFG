@@ -28,5 +28,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 5, 3)
 [node name="3" type="Node3D" parent="SpawnLocation" groups=["SpawnLocationPoint"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, -16)
 
-[node name="Paint_test" parent="." instance=ExtResource("4_aspu1")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -2.34999, 3.15549, -6.6233)
+[node name="PaintPosition" type="Node3D" parent="."]
+
+[node name="Paint_test" parent="PaintPosition" groups=["PaintLocationPoint"] instance=ExtResource("4_aspu1")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -10.7396, 3, -6.623)
+
+[node name="Paint_test2" parent="PaintPosition" groups=["PaintLocationPoint"] instance=ExtResource("4_aspu1")]
+transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, -6.594, 3, 8.794)
+
+[node name="Paint_test3" parent="PaintPosition" groups=["PaintLocationPoint"] instance=ExtResource("4_aspu1")]
+transform = Transform3D(2.12132, 0, 2.12132, 0, 3, 0, -2.12132, 0, 2.12132, -21.3306, 3, -20.9932)
+
+[node name="Paint_test4" parent="PaintPosition" groups=["PaintLocationPoint"] instance=ExtResource("4_aspu1")]
+transform = Transform3D(-1.31134e-07, 0, -3, 0, 3, 0, 3, 0, -1.31134e-07, -7.67577, 3.34105, -11.1273)
+
+[node name="Paint_test5" parent="PaintPosition" groups=["PaintLocationPoint"] instance=ExtResource("4_aspu1")]
+transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, -6.594, 3, -23.195)

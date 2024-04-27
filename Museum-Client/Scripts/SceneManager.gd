@@ -1,10 +1,15 @@
 extends Node3D
 
 @export var PlayerScene : PackedScene
-# Called when the node enters the scene tree for the first time.
+@export var PaintingScene : PackedScene
+
 func _ready():
-	var index = 0
+	SpawnPaintings()
+	SpawnPlayers()
+
+func SpawnPlayers():
 	
+	var index = 0
 	for i in GameManager.Players:
 		var currentPlayer = PlayerScene.instantiate()
 		currentPlayer.name = str(GameManager.Players[i].id)
@@ -14,11 +19,27 @@ func _ready():
 				currentPlayer.global_position = spawn.global_position
 				#currentPlayer.setBadGuy(GameManager.Players[i].badguy)
 		index += 1
-			
-				
-	pass # Replace with function body.
+
+func SpawnPaintings():
+	
+	var index = 0
+	for i in get_tree().get_nodes_in_group("PaintLocationPoint"):
+		print(str(i.name))
+		if !GameManager.Paintings.has(str(i.name)):
+			GameManager.Paintings[str(i.name)] = {
+				"isVandalized" = false
+			}
+	GameManager.numPaintings = GameManager.Paintings.size()
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+
+
+
+
+
