@@ -1,6 +1,11 @@
 extends Node
 
 var Players = {} #dictionary
+#"name": nickName,
+#"id": id,
+#"score": 0,
+#"badguy": false,
+#"handcuffed": false
 var Paintings = {}
 var numPaintings = 0
 
@@ -16,8 +21,8 @@ func selectBadGuys():
 	#selec unmber of badguys
 	var numPlayers = Players.size()
 	var numBadGuys = 2
-	var badGuysPos = [-1, -1]
-	if numPlayers <= 5: #if less than 6 players 1 badguy
+	var badGuysPos = [-1, -1, -1]
+	if numPlayers <= 0: #if less than 6 players 1 badguy
 		numBadGuys -= 1
 	
 	var rng = RandomNumberGenerator.new()
@@ -36,6 +41,7 @@ func selectBadGuys():
 	for player in Players:
 		if playerCounter == badGuysPos[numBadGuys]:
 			setBadGuyDictionary.rpc(player)
+			numBadGuys += 1
 		playerCounter += 1
 
 	print(Players)
@@ -46,5 +52,10 @@ func setBadGuyDictionary(thisPlayer):
 	print(Players[thisPlayer])
 	pass
 
-
+#func CallVandalsWin():
+	#
+	#for i in Players:
+		#Players[i]
+		
+		
 

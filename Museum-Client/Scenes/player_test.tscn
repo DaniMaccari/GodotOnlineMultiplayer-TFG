@@ -108,6 +108,18 @@ offset_top = 56.0
 offset_right = 409.0
 offset_bottom = 114.0
 
+[node name="endGameLabel" type="Label" parent="Camera3D/Control"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+
 [node name="RedBall" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.79403, 0)
 material_override = SubResource("StandardMaterial3D_5mfrn")

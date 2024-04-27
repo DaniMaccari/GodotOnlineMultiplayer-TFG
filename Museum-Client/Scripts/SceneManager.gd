@@ -13,6 +13,7 @@ func SpawnPlayers():
 	for i in GameManager.Players:
 		var currentPlayer = PlayerScene.instantiate()
 		currentPlayer.name = str(GameManager.Players[i].id)
+		GameManager.Players[i].handcuffed = false
 		add_child(currentPlayer)
 		for spawn in get_tree().get_nodes_in_group("SpawnLocationPoint"):
 			if spawn.name == str(index):
@@ -29,7 +30,7 @@ func SpawnPaintings():
 			GameManager.Paintings[str(i.name)] = {
 				"isVandalized" = false
 			}
-	GameManager.numPaintings = GameManager.Paintings.size()
+	#GameManager.numPaintings = GameManager.Paintings.size()
 
 
 

@@ -19,6 +19,7 @@ var syncRot = 0
 @onready var isLabel = $Camera3D/Control/handcuffedLabel
 @onready var hasLabel = $Camera3D/Control/hasHandcuffLabel
 @onready var roleLabel = $Camera3D/Control/roleLabel
+@onready var endLabel = $Camera3D/Control/endGameLabel
 
 
 #--player variables--
@@ -103,8 +104,10 @@ func _input(event):
 			
 			var detected = raycast.get_collider()
 			if detected is Paint:
-				print("player_movement -", "VANDALIZEE")
+				print("player_movement -", "VANDALIZE")
 				detected.VandalicePainting.rpc()
+				if CountVandalized():
+					VandalsWin.rpc()
 			
 
 @rpc("any_peer", "call_remote")
@@ -115,6 +118,15 @@ func get_handcuffed():
 	#show handcuff icon/animation
 	redball.visible = true
 	print("Im handcuffed ", multiplayer.get_unique_id())
+	GameManager.Players[(str(self.name)).to_int()].handcuffed = true
+	
+	var badGuysLeft = false
+	for i in GameManager.Players:
+		if GameManager.Players[i].badguy && !GameManager.Players[i].handcuffed: #badguy without handcuffs
+			badGuysLeft = true
+	
+	if !badGuysLeft:
+		GuardsWin.rpc()
 
 
 func setBadGuy(role):
@@ -127,6 +139,21 @@ func setBadGuy(role):
 		else:
 			roleLabel.text = " you are a GUARD"
 
+@rpc("any_peer", "call_local", "reliable")
+func VandalsWin():
+	endLabel.text = ("VANDALS WIN! /n all paintings were vandalized")
 
+@rpc("any_peer","call_local", "reliable")
+func  GuardsWin():
+	endLabel.text = ("GUARDS WIN /n all vandals were cought")
 
-
+func CountVandalized():
+	var countVandalized = 0
+	for i in GameManager.Paintings:
+		if GameManager.Paintings[i].isVandalized == true:
+			countVandalized += 1
+	
+	#contar cauntos cuadros han sido vandalizados
+	if countVandalized >= GameManager.Paintings.size():
+		return true
+	return false

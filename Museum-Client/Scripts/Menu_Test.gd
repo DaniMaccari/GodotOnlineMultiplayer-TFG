@@ -43,7 +43,8 @@ func SendplayerInformation(nickName, id):
 			"name": nickName,
 			"id": id,
 			"score": 0,
-			"badguy": false
+			"badguy": false,
+			"handcuffed": false
 		}
 		
 	if multiplayer.is_server():

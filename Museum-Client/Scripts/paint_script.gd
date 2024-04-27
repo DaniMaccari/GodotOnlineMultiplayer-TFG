@@ -43,10 +43,11 @@ func VandalicePainting():
 		if GameManager.Paintings[i].isVandalized == true:
 			countVandalized += 1
 	
+	#contar cauntos cuadros han sido vandalizados
 	if countVandalized >= GameManager.Paintings.size():
 		#VANDALS WIN
 		print("VANDALS WIN game over")
-	
+		#GameManager.CallVandalsWin()
 
 
 
