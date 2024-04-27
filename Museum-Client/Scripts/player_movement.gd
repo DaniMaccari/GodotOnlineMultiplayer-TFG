@@ -118,7 +118,7 @@ func get_handcuffed():
 
 
 func setBadGuy(role):
-	if $MultiplayerSynchronizer.get_multiplayer_authority() != multiplayer.get_unique_id():
+	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		badGuy = role
 		print("setBadGuy ",myID, role)
 		roleLabel.text = ""
