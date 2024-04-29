@@ -329,7 +329,7 @@ bones/16/position = Vector3(-4.1764e-09, 0.474046, 8.93488e-09)
 bones/16/rotation = Quaternion(0.073429, -0.00164242, -0.019318, 0.997112)
 bones/16/scale = Vector3(1, 1, 1)
 
-[node name="a" type="MeshInstance3D" parent="metarig/Skeleton3D"]
+[node name="Pierna Izq" type="MeshInstance3D" parent="metarig/Skeleton3D"]
 mesh = SubResource("ArrayMesh_7j6mr")
 skin = SubResource("Skin_d3rxf")
 
