@@ -21,6 +21,8 @@ var syncRot = 0
 @onready var roleLabel = $Camera3D/Control/roleLabel
 @onready var endLabel = $Camera3D/Control/endGameLabel
 
+@onready var headRotation = $CollisionShape3D/Skeleton3D/HeadRotation
+#@onready var headRotation = $CollisionShape3D/catcop_v1/metarig/Skeleton3D/HeadRotation
 
 #--player variables--
 var hasHandcuffs = true
@@ -37,6 +39,7 @@ func _ready():
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		myID = multiplayer.get_unique_id()
 		camera.current = true
+		headRotation.visible = false
 	setBadGuy(GameManager.Players[(str(self.name)).to_int()].badguy)
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -51,6 +54,9 @@ func _physics_process(delta):
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		isLabel.text = ("is_handcuffed "+ str(isHandcuffed) )
 		hasLabel.text = ("has_handcuffs "+ str(hasHandcuffs) )
+		
+		headRotation.rotation.x = -camera.rotation.x #head movement
+		
 		if isHandcuffed:
 			return
 		# Add the gravity.
@@ -87,7 +93,10 @@ func _input(event):
 	elif event is InputEventMouseMotion:
 		rotate_y(-deg_to_rad(event.relative.x) * MOUSE_SENSITIVITY)
 		camera.rotate_x(-deg_to_rad(event.relative.y) * MOUSE_SENSITIVITY)
-		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
+		camera.rotation.x = clamp(camera.rotation.x, -PI/2 +.3, PI/2)
+		
+		
+		
 	
 	elif Input.is_action_just_pressed("ui_handcuffs"):
 		if hasHandcuffs and raycast.is_colliding(): #player layer -> 1
