@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dbc4nsbg5kv04"]
+[gd_scene load_steps=3 format=3 uid="uid://dbc4nsbg5kv04"]
 
 [ext_resource type="Script" path="res://Scripts/Menu_Test.gd" id="1_dwmi4"]
+[ext_resource type="Script" path="res://Scripts/ServerBrowser.gd" id="2_nibp0"]
 
 [node name="Menu_Test" type="Control"]
 layout_mode = 3
@@ -35,6 +36,17 @@ offset_right = 688.0
 offset_bottom = 140.0
 text = "START"
 
+[node name="ServerBrowser" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_nibp0")
+
+[node name="BroadcastTimer" type="Timer" parent="ServerBrowser"]
+wait_time = 1.5
+autostart = true
+
 [connection signal="pressed" from="host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="start" to="." method="_on_start_pressed"]
+[connection signal="timeout" from="ServerBrowser/BroadcastTimer" to="ServerBrowser" method="_on_broadcast_timer_timeout"]
