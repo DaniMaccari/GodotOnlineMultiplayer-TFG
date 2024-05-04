@@ -22,7 +22,7 @@ func selectBadGuys():
 	var numPlayers = Players.size()
 	var numBadGuys = 2
 	var badGuysPos = [-1, -1, -1]
-	if numPlayers <= 0: #if less than 6 players 1 badguy
+	if numPlayers <= 4: #if less than 6 players 1 badguy
 		numBadGuys -= 1
 	
 	var rng = RandomNumberGenerator.new()

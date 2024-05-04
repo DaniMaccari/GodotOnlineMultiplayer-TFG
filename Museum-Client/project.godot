@@ -77,3 +77,10 @@ ui_jump={
 [physics]
 
 3d/default_gravity=13.0
+
+[shader_globals]
+
+precision_multiplier={
+"type": "float",
+"value": 0.5
+}

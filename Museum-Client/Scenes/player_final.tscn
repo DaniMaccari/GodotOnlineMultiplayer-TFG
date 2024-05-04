@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://3ikccy1x408p"]
+[gd_scene load_steps=17 format=3 uid="uid://t607jalha21r"]
 
 [ext_resource type="Script" path="res://Scripts/player_movement.gd" id="1_1w6fj"]
 [ext_resource type="Texture2D" uid="uid://cgk5dvf7usrw1" path="res://Assets/models/catcop_v1_catcop_texture_3.png" id="2_dxjka"]
@@ -400,6 +400,11 @@ replication_interval = 0.03
 delta_interval = 0.03
 replication_config = SubResource("SceneReplicationConfig_7eavb")
 
+[node name="RedBall" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 4.38111, 0)
+material_override = SubResource("StandardMaterial3D_5mfrn")
+mesh = SubResource("SphereMesh_kb1ud")
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9702, 0)
 
@@ -459,8 +464,3 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_alignment = 1
-
-[node name="RedBall" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 4.38111, 0)
-material_override = SubResource("StandardMaterial3D_5mfrn")
-mesh = SubResource("SphereMesh_kb1ud")

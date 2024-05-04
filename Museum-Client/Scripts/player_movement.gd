@@ -52,6 +52,7 @@ func _physics_process(delta):
 	#if $MultiplayerSynchronizer.get_multiplayer_authority() == myID && !isHandcuffed:
 	
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
+		
 		isLabel.text = ("is_handcuffed "+ str(isHandcuffed) )
 		hasLabel.text = ("has_handcuffs "+ str(hasHandcuffs) )
 		
@@ -78,7 +79,7 @@ func _physics_process(delta):
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
-
+		
 		move_and_slide()
 	
 	else:
@@ -91,6 +92,8 @@ func _input(event):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 	elif event is InputEventMouseMotion:
+		
+		#event = event.make_input_local()
 		rotate_y(-deg_to_rad(event.relative.x) * MOUSE_SENSITIVITY)
 		camera.rotate_x(-deg_to_rad(event.relative.y) * MOUSE_SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, -PI/2 +.3, PI/2)

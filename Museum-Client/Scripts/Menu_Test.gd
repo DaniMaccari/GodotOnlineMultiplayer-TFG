@@ -90,7 +90,7 @@ func _on_start_pressed():
 @rpc("any_peer", "call_local", "reliable")
 func StartGame():
 	
-	var scene = load("res://Scenes/test_movement_scene.tscn").instantiate()
+	var scene = load("res://Scenes/ShaderViewport.tscn").instantiate()
 	get_tree().root.add_child(scene)
 	self.hide()
 	
