@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://betni2j58von1"]
+
+[ext_resource type="PackedScene" uid="uid://cfg3vvh1d1jba" path="res://Assets/Modelos/Museo.blend" id="1_a5vi6"]
+
+[node name="StageMuseo" type="StaticBody3D"]
+
+[node name="Museo" parent="." instance=ExtResource("1_a5vi6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2342, 0, -16.1737)
