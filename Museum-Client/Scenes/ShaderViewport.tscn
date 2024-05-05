@@ -1,0 +1,87 @@
+[gd_scene load_steps=9 format=3 uid="uid://cuipw5r2ecyf3"]
+
+[ext_resource type="Shader" path="res://Scripts/shaders/post_process_blur.gdshader" id="1_15l55"]
+[ext_resource type="Shader" path="res://Scripts/shaders/pp_band-dither.gdshader" id="1_x71hf"]
+[ext_resource type="PackedScene" uid="uid://qu5ogw1k4hkr" path="res://Scenes/test_movement_scene.tscn" id="2_bw7sd"]
+[ext_resource type="Shader" path="res://Scripts/shaders/lcd_post_process.gdshader" id="2_iwvhs"]
+[ext_resource type="Texture2D" uid="uid://b0ub3tqjyw46f" path="res://Scripts/shaders/psxdither.png" id="2_pbqu7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2y51h"]
+shader = ExtResource("1_15l55")
+shader_parameter/blur_scale = Vector2(0.1, 0.1)
+shader_parameter/blur_samples = 20.0
+shader_parameter/blur_brightness = 1.1
+shader_parameter/enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bf61m"]
+shader = ExtResource("2_iwvhs")
+shader_parameter/enabled = true
+shader_parameter/lcd_opacity = 0.3
+shader_parameter/scanline_gap = 5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xw8hi"]
+shader = ExtResource("1_x71hf")
+shader_parameter/col_depth = 15.0
+shader_parameter/dither_banding = true
+shader_parameter/dither_tex = ExtResource("2_pbqu7")
+
+[node name="Node" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_2y51h")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="LCD screen shader" type="SubViewportContainer" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+material = SubResource("ShaderMaterial_bf61m")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer/SubViewport/LCD screen shader"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Dither shader" type="SubViewportContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/LCD screen shader/SubViewport"]
+material = SubResource("ShaderMaterial_xw8hi")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer/SubViewport/LCD screen shader/SubViewport/Dither shader"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Node3D" parent="CanvasLayer/SubViewportContainer/SubViewport/LCD screen shader/SubViewport/Dither shader/SubViewport" instance=ExtResource("2_bw7sd")]
