@@ -1,6 +1,6 @@
 extends Control
 
-@export var ADDRESS = "127.0.0.1"#"fe80::3857:e3:45c1:2b84%10"# #127.0.0.1 local IP
+@export var ADDRESS = "2a0c:5a81:60f:f600:8e60:30a5:61fe:fabd"#"fe80::3857:e3:45c1:2b84%10"# #127.0.0.1 local IP
 @export var PORT = 8080
 var max_clients = 8
 var peer
