@@ -4,7 +4,7 @@
 [ext_resource type="Shader" path="res://Scripts/shaders/pp_band-dither.gdshader" id="1_x71hf"]
 [ext_resource type="PackedScene" uid="uid://qu5ogw1k4hkr" path="res://Scenes/test_movement_scene.tscn" id="2_bw7sd"]
 [ext_resource type="Shader" path="res://Scripts/shaders/lcd_post_process.gdshader" id="2_iwvhs"]
-[ext_resource type="Texture2D" uid="uid://b0ub3tqjyw46f" path="res://Scripts/shaders/psxdither.png" id="2_pbqu7"]
+[ext_resource type="Texture2D" uid="uid://b0ub3tqjyw46f" path="res://shaders/psxdither.png" id="2_pbqu7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2y51h"]
 shader = ExtResource("1_15l55")
@@ -16,8 +16,8 @@ shader_parameter/enabled = true
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bf61m"]
 shader = ExtResource("2_iwvhs")
 shader_parameter/enabled = true
-shader_parameter/lcd_opacity = 0.3
-shader_parameter/scanline_gap = 5
+shader_parameter/lcd_opacity = 0.05
+shader_parameter/scanline_gap = 6
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xw8hi"]
 shader = ExtResource("1_x71hf")
@@ -45,7 +45,7 @@ handle_input_locally = false
 canvas_item_default_texture_filter = 0
 audio_listener_enable_2d = true
 audio_listener_enable_3d = true
-size = Vector2i(1152, 648)
+size = Vector2i(288, 162)
 render_target_update_mode = 4
 
 [node name="LCD screen shader" type="SubViewportContainer" parent="CanvasLayer/SubViewportContainer/SubViewport"]
@@ -63,7 +63,7 @@ handle_input_locally = false
 canvas_item_default_texture_filter = 0
 audio_listener_enable_2d = true
 audio_listener_enable_3d = true
-size = Vector2i(1152, 648)
+size = Vector2i(288, 162)
 render_target_update_mode = 4
 
 [node name="Dither shader" type="SubViewportContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/LCD screen shader/SubViewport"]
@@ -81,7 +81,7 @@ handle_input_locally = false
 canvas_item_default_texture_filter = 0
 audio_listener_enable_2d = true
 audio_listener_enable_3d = true
-size = Vector2i(1152, 648)
+size = Vector2i(288, 162)
 render_target_update_mode = 4
 
 [node name="Node3D" parent="CanvasLayer/SubViewportContainer/SubViewport/LCD screen shader/SubViewport/Dither shader/SubViewport" instance=ExtResource("2_bw7sd")]

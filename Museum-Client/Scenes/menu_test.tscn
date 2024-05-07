@@ -14,26 +14,26 @@ script = ExtResource("1_dwmi4")
 
 [node name="host" type="Button" parent="."]
 layout_mode = 0
-offset_left = 111.0
-offset_top = 73.0
-offset_right = 264.0
-offset_bottom = 140.0
+offset_left = 22.0
+offset_top = 67.0
+offset_right = 91.0
+offset_bottom = 99.0
 text = "HOST"
 
 [node name="join" type="Button" parent="."]
 layout_mode = 0
-offset_left = 324.0
-offset_top = 73.0
-offset_right = 477.0
-offset_bottom = 140.0
+offset_left = 106.0
+offset_top = 66.0
+offset_right = 185.0
+offset_bottom = 99.0
 text = "JOIN"
 
 [node name="start" type="Button" parent="."]
 layout_mode = 0
-offset_left = 535.0
-offset_top = 73.0
-offset_right = 688.0
-offset_bottom = 140.0
+offset_left = 199.0
+offset_top = 65.0
+offset_right = 265.0
+offset_bottom = 101.0
 text = "START"
 
 [node name="ServerBrowser" type="Control" parent="."]
@@ -44,7 +44,6 @@ script = ExtResource("2_nibp0")
 
 [node name="BroadcastTimer" type="Timer" parent="ServerBrowser"]
 wait_time = 1.5
-autostart = true
 
 [connection signal="pressed" from="host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="join" to="." method="_on_join_pressed"]

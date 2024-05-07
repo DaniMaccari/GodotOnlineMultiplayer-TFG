@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bptuiol806wgx"
-path="res://.godot/imported/Museo fixed.glb-e47853be20f10794a71b9f451edf6d6c.scn"
+uid="uid://dtogybw4fdnsx"
+path="res://.godot/imported/Museo Text Fixed 4.glb-ad129d31b7d5f13586a3cd65b012f54d.scn"
 
 [deps]
 
-source_file="res://Assets/models/Mapa2/Museo fixed.glb"
-dest_files=["res://.godot/imported/Museo fixed.glb-e47853be20f10794a71b9f451edf6d6c.scn"]
+source_file="res://Assets/models/Museo Text Fixed 4.glb"
+dest_files=["res://.godot/imported/Museo Text Fixed 4.glb-ad129d31b7d5f13586a3cd65b012f54d.scn"]
 
 [params]
 

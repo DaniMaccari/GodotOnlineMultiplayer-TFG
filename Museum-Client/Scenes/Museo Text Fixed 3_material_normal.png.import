@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpsaucida83bm"
-path.s3tc="res://.godot/imported/Museo fixed_walls.jpg-a3c0effd1f5a54004538d8d5fe6641d5.s3tc.ctex"
+uid="uid://bdpchgd4aggfg"
+path.s3tc="res://.godot/imported/Museo Text Fixed 3_material_normal.png-ad5d4d15fb0bb0243cd46d9908986e08.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "1a476c875c8829e6622a9d1356cb47a5"
+"md5": "ed79c0f04301042511eba284933bb568"
 }
 
 [deps]
 
-source_file="res://Assets/models/Mapa2/Museo fixed_walls.jpg"
-dest_files=["res://.godot/imported/Museo fixed_walls.jpg-a3c0effd1f5a54004538d8d5fe6641d5.s3tc.ctex"]
+source_file="res://Scenes/Museo Text Fixed 3_material_normal.png"
+dest_files=["res://.godot/imported/Museo Text Fixed 3_material_normal.png-ad5d4d15fb0bb0243cd46d9908986e08.s3tc.ctex"]
 
 [params]
 
@@ -23,12 +23,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://Scenes/Museo Text Fixed 3_material_normal.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

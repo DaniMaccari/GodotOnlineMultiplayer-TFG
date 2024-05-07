@@ -2,18 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhg4lojxnqdqk"
-path.s3tc="res://.godot/imported/Museo_text_Tiles002_2K-JPG_Color.jpg-845733347d78fc0f73c63f6157a1cb8a.s3tc.ctex"
+uid="uid://cu8x5bls5lx2e"
+path.s3tc="res://.godot/imported/Museo Text Fixed 4_walls (1).jpg-45f32f18f3308bc7972518dc77209284.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={}
+generator_parameters={
+"md5": "be91375cd72e15cae5d2f2b46635d213"
+}
 
 [deps]
 
-source_file="res://Assets/models/MapModel/Museo_text_Tiles002_2K-JPG_Color.jpg"
-dest_files=["res://.godot/imported/Museo_text_Tiles002_2K-JPG_Color.jpg-845733347d78fc0f73c63f6157a1cb8a.s3tc.ctex"]
+source_file="res://Assets/models/Museo Text Fixed 4_walls (1).jpg"
+dest_files=["res://.godot/imported/Museo Text Fixed 4_walls (1).jpg-45f32f18f3308bc7972518dc77209284.s3tc.ctex"]
 
 [params]
 
