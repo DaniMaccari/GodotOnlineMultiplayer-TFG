@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/SceneManager.gd" id="1_cc8ak"]
 [ext_resource type="PackedScene" uid="uid://t607jalha21r" path="res://Scenes/player_final.tscn" id="2_v0u1m"]
 [ext_resource type="PackedScene" uid="uid://3r20sthoav0r" path="res://Scenes/paint_test.tscn" id="4_aspu1"]
-[ext_resource type="PackedScene" uid="uid://bp57o20cby387" path="res://Scenes/Museo_ver4.tscn" id="4_jywxq"]
+[ext_resource type="PackedScene" uid="uid://dwbfq00wkpt22" path="res://Scenes/Museo_ver4.tscn" id="4_jywxq"]
 
 [sub_resource type="Environment" id="Environment_x0j5o"]
 background_mode = 1

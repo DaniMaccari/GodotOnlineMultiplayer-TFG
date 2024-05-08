@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bp57o20cby387"]
+[gd_scene load_steps=18 format=3 uid="uid://dwbfq00wkpt22"]
 
 [ext_resource type="Texture2D" uid="uid://cu8x5bls5lx2e" path="res://Assets/models/Museo Text Fixed 4_walls (1).jpg" id="1_4pqjn"]
 [ext_resource type="Texture2D" uid="uid://o0ts65p6114j" path="res://Assets/models/Museo Text Fixed 4_material_normal.png" id="2_3wwbp"]

@@ -1,9 +1,9 @@
 [gd_scene load_steps=18 format=3 uid="uid://b2uw5vvub4psj"]
 
-[ext_resource type="Texture2D" uid="uid://yprxb08s17up" path="res://Assets/models/MapModel/Museo_text_walls.jpg" id="1_oeygr"]
-[ext_resource type="Texture2D" uid="uid://dvieftnb5me2b" path="res://Assets/models/MapModel/Museo_text_Untitled.png" id="2_ipn4e"]
-[ext_resource type="Texture2D" uid="uid://biww414gl0cqd" path="res://Assets/models/MapModel/Museo_text_floorTex.jpg" id="3_3fsx5"]
-[ext_resource type="Texture2D" uid="uid://dhg4lojxnqdqk" path="res://Assets/models/MapModel/Museo_text_Tiles002_2K-JPG_Color.jpg" id="4_5w11k"]
+[ext_resource type="Texture2D" path="res://Assets/models/MapModel/Museo_text_walls.jpg" id="1_oeygr"]
+[ext_resource type="Texture2D" path="res://Assets/models/MapModel/Museo_text_Untitled.png" id="2_ipn4e"]
+[ext_resource type="Texture2D" path="res://Assets/models/MapModel/Museo_text_floorTex.jpg" id="3_3fsx5"]
+[ext_resource type="Texture2D" path="res://Assets/models/MapModel/Museo_text_Tiles002_2K-JPG_Color.jpg" id="4_5w11k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8l8c"]
 resource_name = "walls"
