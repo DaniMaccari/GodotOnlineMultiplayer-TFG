@@ -72,9 +72,16 @@ func _physics_process(delta):
 		if not is_on_floor():
 			velocity.y -= gravity * delta
 	
-		# Handle jump.
-		if Input.is_action_just_pressed("ui_jump") and is_on_floor():
-			velocity.y = JUMP_VELOCITY
+		## Handle jump.
+		#if Input.is_action_just_pressed("ui_jump") and is_on_floor():
+			#velocity.y = JUMP_VELOCITY
+		
+		#BORRAR/CAMBIAR
+		var bailecito = false
+		if Input.is_action_pressed("gesture1"):
+			print("bailecito")
+			bailecito = true
+			playAnim.rpc("Dance02")
 		
 		syncPos = global_position
 		# Get the input direction and handle the movement/deceleration.
@@ -82,10 +89,12 @@ func _physics_process(delta):
 		var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		
-		if input_dir.y < 0:
+		if input_dir.y < 0 || input_dir.x != 0:
 			playAnim.rpc("Walk")
-		else:
+		elif input_dir.y > 0:
 			playAnim.rpc("WalkBack")
+		elif !bailecito:
+			playAnim.rpc("Idle")
 			
 		if direction: #is moving
 			velocity.x = direction.x * SPEED
@@ -94,7 +103,7 @@ func _physics_process(delta):
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
-			playAnim.rpc("Idle")
+			
 		
 		
 		move_and_slide()
