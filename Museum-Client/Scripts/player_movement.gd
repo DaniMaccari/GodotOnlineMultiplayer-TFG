@@ -32,7 +32,7 @@ var syncRot = 0
 var hasHandcuffs = true
 var isHandcuffed = false
 var badGuy #= false #set randomlly at the beggining
-var blockMovement = false
+var canMove = true
 
 func _enter_tree():
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
@@ -63,11 +63,11 @@ func _physics_process(delta):
 		isLabel.text = ("is_handcuffed "+ str(isHandcuffed) )
 		hasLabel.text = ("has_handcuffs "+ str(hasHandcuffs) )
 		
-		if !isHandcuffed:
-			headRotation.rotation.x = -camera.rotation.x #head movement
-		
-		if isHandcuffed:
+		if isHandcuffed || !canMove:
 			return
+		
+		headRotation.rotation.x = -camera.rotation.x #head movement
+		
 		# Add the gravity.
 		if not is_on_floor():
 			velocity.y -= gravity * delta
@@ -81,14 +81,21 @@ func _physics_process(delta):
 		# As good practice, you should replace UI actions with custom gameplay actions.
 		var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-		if direction && !blockMovement: #is moving
+		
+		if input_dir.y < 0:
+			playAnim.rpc("Walk")
+		else:
+			playAnim.rpc("WalkBack")
+			
+		if direction: #is moving
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED
-			playAnim.rpc("Walk")
+			
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
 			playAnim.rpc("Idle")
+		
 		
 		move_and_slide()
 	
@@ -105,6 +112,8 @@ func _input(event):
 	
 	elif event is InputEventMouseMotion:
 		
+		if !canMove:
+			return
 		#event = event.make_input_local()
 		rotate_y(-deg_to_rad(event.relative.x) * MOUSE_SENSITIVITY)
 		camera.rotate_x(-deg_to_rad(event.relative.y) * MOUSE_SENSITIVITY)
@@ -122,7 +131,7 @@ func _input(event):
 			if hit_player is Paint:
 				return
 			else:
-				playAnim.rpc("putHandcuffs")
+				playAnim.rpc("putHandcuffsNew")
 				print(hit_player.get_name())
 				hit_player.get_handcuffed.rpc_id(hit_player.get_name().to_int()) #multiplayer.get_unique_id()
 				#print(hit_player.get_multiplayer_authority())
@@ -130,10 +139,11 @@ func _input(event):
 		
 	elif Input.is_action_just_pressed("ui_paint"):
 		if badGuy and raycast.is_colliding(): #cuadro layer -> 2
-			#play animation 2-4 segs
+			
 			
 			var detected = raycast.get_collider()
 			if detected is Paint:
+				#play animation 4 segs
 				playAnim.rpc("Paint")
 				
 				print("player_movement -", "VANDALIZE")
@@ -203,9 +213,10 @@ func playAnim(animationName):
 func callHandcuffedAnim():
 	playAnim.rpc("Handcuffed02")
 
-func PlayPaintAnim():
-	blockMovement = true
+func BlockMovement():
+	headRotation.rotation.x = 0
+	canMove = false
 
-func GoBack():
-	blockMovement = false
+func ActivateMovement():
+	canMove = true
 
