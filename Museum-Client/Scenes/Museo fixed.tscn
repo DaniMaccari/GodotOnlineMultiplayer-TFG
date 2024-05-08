@@ -1,20 +1,21 @@
-[gd_scene load_steps=18 format=3 uid="uid://82luvfe71nvn"]
+[gd_scene load_steps=18 format=3 uid="uid://37mhucddqoqt"]
 
-[ext_resource type="Texture2D" uid="uid://bpsaucida83bm" path="res://Assets/models/Mapa2/Museo fixed_walls.jpg" id="1_tcpl3"]
-[ext_resource type="Texture2D" uid="uid://s0d0d7f6tqtb" path="res://Assets/models/Mapa2/Museo fixed_Untitled.png" id="2_6aee1"]
-[ext_resource type="Texture2D" uid="uid://bdxw5bj5qloyy" path="res://Assets/models/Mapa2/Museo fixed_floorTex.jpg" id="3_20lbx"]
-[ext_resource type="Texture2D" uid="uid://bkcu6irfn57xs" path="res://Assets/models/Mapa2/Museo fixed_Tiles002_2K-JPG_Color.jpg" id="4_s5q83"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3mkf0"]
+load_path = "res://.godot/imported/Museo fixed_walls.jpg-a3c0effd1f5a54004538d8d5fe6641d5.s3tc.ctex"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l7xdq"]
 resource_name = "walls"
 cull_mode = 2
-albedo_texture = ExtResource("1_tcpl3")
+albedo_texture = SubResource("CompressedTexture2D_3mkf0")
 roughness = 0.5
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gqvf1"]
+load_path = "res://.godot/imported/Museo fixed_Untitled.png-cfadaaf974e797ec6310690ad4b4a9ba.s3tc.ctex"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uecwv"]
 resource_name = "walls2"
 cull_mode = 2
-albedo_texture = ExtResource("2_6aee1")
+albedo_texture = SubResource("CompressedTexture2D_gqvf1")
 roughness = 0.5
 texture_filter = 2
 
@@ -72,10 +73,13 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_t57rt")
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ia7eu"]
+load_path = "res://.godot/imported/Museo fixed_floorTex.jpg-364556a4d9fecad8edc1bb8803be4253.s3tc.ctex"
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_074ts"]
 resource_name = "Material.002"
 cull_mode = 2
-albedo_texture = ExtResource("3_20lbx")
+albedo_texture = SubResource("CompressedTexture2D_ia7eu")
 roughness = 0.5
 texture_filter = 2
 
@@ -113,10 +117,13 @@ shadow_mesh = SubResource("ArrayMesh_bp5n2")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mj1rf"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ie60e"]
+load_path = "res://.godot/imported/Museo fixed_Tiles002_2K-JPG_Color.jpg-f49320a39d55bf89cb95a0723ca7053d.s3tc.ctex"
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5d2va"]
 resource_name = "Material.006"
 cull_mode = 2
-albedo_texture = ExtResource("4_s5q83")
+albedo_texture = SubResource("CompressedTexture2D_ie60e")
 roughness = 0.5
 texture_filter = 2
 

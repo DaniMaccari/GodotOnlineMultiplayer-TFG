@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdxw5bj5qloyy"
-path.s3tc="res://.godot/imported/Museo fixed_floorTex.jpg-364556a4d9fecad8edc1bb8803be4253.s3tc.ctex"
+uid="uid://o0ts65p6114j"
+path.s3tc="res://.godot/imported/Museo Text Fixed 4_material_normal.png-59ee4ac1f4758c9215edf4ab08eb22c0.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "5a9fc674c4b31118b35039158cd12b84"
+"md5": "ed79c0f04301042511eba284933bb568"
 }
 
 [deps]
 
-source_file="res://Assets/models/Mapa2/Museo fixed_floorTex.jpg"
-dest_files=["res://.godot/imported/Museo fixed_floorTex.jpg-364556a4d9fecad8edc1bb8803be4253.s3tc.ctex"]
+source_file="res://Assets/models/Museo Text Fixed 4_material_normal.png"
+dest_files=["res://.godot/imported/Museo Text Fixed 4_material_normal.png-59ee4ac1f4758c9215edf4ab08eb22c0.s3tc.ctex"]
 
 [params]
 
@@ -23,12 +23,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://Assets/models/Museo Text Fixed 4_material_normal.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
