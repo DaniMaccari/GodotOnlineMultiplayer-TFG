@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://qu5ogw1k4hkr"]
 
 [ext_resource type="Script" path="res://Scripts/SceneManager.gd" id="1_cc8ak"]
-[ext_resource type="PackedScene" path="res://Scenes/player_CatCop.tscn" id="2_6he8f"]
+[ext_resource type="PackedScene" uid="uid://cf3t0gvlp2yys" path="res://Scenes/player_CatCop.tscn" id="2_6he8f"]
 [ext_resource type="PackedScene" uid="uid://3r20sthoav0r" path="res://Scenes/paint_test.tscn" id="4_aspu1"]
 [ext_resource type="PackedScene" uid="uid://b3yr4cqyxv6mg" path="res://Scenes/Museo_ver4.tscn" id="4_jywxq"]
 

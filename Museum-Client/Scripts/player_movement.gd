@@ -21,7 +21,7 @@ var syncRot = 0
 @onready var roleLabel = $Camera3D/Control/roleLabel
 @onready var endLabel = $Camera3D/Control/endGameLabel
 
-@onready var headRotation = $CollisionShape3D/Skeleton3D/HeadRotation
+@onready var headRotation = $Armature/Skeleton3D/Cuerpo/HeadRotation
 #@onready var headRotation = $CollisionShape3D/catcop_v1/metarig/Skeleton3D/HeadRotation
 
 #--player variables--
