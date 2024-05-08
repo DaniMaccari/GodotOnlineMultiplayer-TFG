@@ -21,13 +21,18 @@ var syncRot = 0
 @onready var roleLabel = $Camera3D/Control/roleLabel
 @onready var endLabel = $Camera3D/Control/endGameLabel
 
-@onready var headRotation = $CollisionShape3D/Skeleton3D/HeadRotation
+@onready var animation_tree = $AnimationTree
+@onready var state_machine = animation_tree.get("parameters/playback")
+#@onready var animation_mode = animation_tree.get("parameters/playback")
+
+@onready var headRotation = $Armature/Skeleton3D/Cuerpo/HeadRotation
 #@onready var headRotation = $CollisionShape3D/catcop_v1/metarig/Skeleton3D/HeadRotation
 
 #--player variables--
 var hasHandcuffs = true
 var isHandcuffed = false
 var badGuy #= false #set randomlly at the beggining
+var blockMovement = false
 
 func _enter_tree():
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
@@ -40,6 +45,8 @@ func _ready():
 		myID = multiplayer.get_unique_id()
 		camera.current = true
 		headRotation.visible = false
+		
+		state_machine.start("Idle")
 	setBadGuy(GameManager.Players[(str(self.name)).to_int()].badguy)
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -56,7 +63,8 @@ func _physics_process(delta):
 		isLabel.text = ("is_handcuffed "+ str(isHandcuffed) )
 		hasLabel.text = ("has_handcuffs "+ str(hasHandcuffs) )
 		
-		headRotation.rotation.x = -camera.rotation.x #head movement
+		if !isHandcuffed:
+			headRotation.rotation.x = -camera.rotation.x #head movement
 		
 		if isHandcuffed:
 			return
@@ -73,12 +81,14 @@ func _physics_process(delta):
 		# As good practice, you should replace UI actions with custom gameplay actions.
 		var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-		if direction:
+		if direction && !blockMovement: #is moving
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED
+			playAnim.rpc("Walk")
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
+			playAnim.rpc("Idle")
 		
 		move_and_slide()
 	
@@ -87,7 +97,9 @@ func _physics_process(delta):
 		
 
 func _input(event):
-
+	if $MultiplayerSynchronizer.get_multiplayer_authority() != multiplayer.get_unique_id():
+		return
+		
 	if Input.is_action_just_pressed("ui_quit"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
@@ -103,12 +115,18 @@ func _input(event):
 	
 	elif Input.is_action_just_pressed("ui_handcuffs"):
 		if hasHandcuffs and raycast.is_colliding(): #player layer -> 1
+			
+			
+			
 			var hit_player = raycast.get_collider()
-			if hit_player is Paint: return
-			print(hit_player.get_name())
-			hit_player.get_handcuffed.rpc_id(hit_player.get_name().to_int()) #multiplayer.get_unique_id()
-			#print(hit_player.get_multiplayer_authority())
-			hasHandcuffs = false
+			if hit_player is Paint:
+				return
+			else:
+				playAnim.rpc("putHandcuffs")
+				print(hit_player.get_name())
+				hit_player.get_handcuffed.rpc_id(hit_player.get_name().to_int()) #multiplayer.get_unique_id()
+				#print(hit_player.get_multiplayer_authority())
+				hasHandcuffs = false
 		
 	elif Input.is_action_just_pressed("ui_paint"):
 		if badGuy and raycast.is_colliding(): #cuadro layer -> 2
@@ -116,6 +134,8 @@ func _input(event):
 			
 			var detected = raycast.get_collider()
 			if detected is Paint:
+				playAnim.rpc("Paint")
+				
 				print("player_movement -", "VANDALIZE")
 				detected.VandalicePainting.rpc()
 				if CountVandalized():
@@ -124,6 +144,7 @@ func _input(event):
 
 @rpc("any_peer", "call_remote")
 func get_handcuffed():
+	
 	isHandcuffed = true
 	hasHandcuffs = false
 	
@@ -131,6 +152,10 @@ func get_handcuffed():
 	redball.visible = true
 	print("Im handcuffed ", multiplayer.get_unique_id())
 	GameManager.HandCuffPlayer.rpc((str(self.name)).to_int()) #update handcuffed
+	camera.position = $CameraHandcuffed.position
+	playAnim.rpc("Handcuffed02")
+	headRotation.rotation.x = 0
+	#playAnim.rpc("Handcuffed02")
 	
 	var badGuysLeft = false
 	for i in GameManager.Players:
@@ -169,3 +194,18 @@ func CountVandalized():
 	if countVandalized >= GameManager.Paintings.size():
 		return true
 	return false
+
+#animations
+@rpc("any_peer", "call_local")
+func playAnim(animationName):
+	state_machine.travel(animationName)
+	
+func callHandcuffedAnim():
+	playAnim.rpc("Handcuffed02")
+
+func PlayPaintAnim():
+	blockMovement = true
+
+func GoBack():
+	blockMovement = false
+

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://gqfann3a3wxa"
-path="res://.godot/imported/catcop_v1.glb-68677aacca1fe80af3fe6d5e06a2d57e.scn"
+uid="uid://deeix0a83ulai"
+path="res://.godot/imported/CatCop_WithAnimations_v5.glb-b1ef6bb8bdda59254a8f8f290a87dd01.scn"
 
 [deps]
 
-source_file="res://Assets/models/catcop_v1.glb"
-dest_files=["res://.godot/imported/catcop_v1.glb-68677aacca1fe80af3fe6d5e06a2d57e.scn"]
+source_file="res://Assets/models/CatCop5.1/CatCop_WithAnimations_v5.glb"
+dest_files=["res://.godot/imported/CatCop_WithAnimations_v5.glb-b1ef6bb8bdda59254a8f8f290a87dd01.scn"]
 
 [params]
 
