@@ -33,6 +33,7 @@ var hasHandcuffs = true
 var isHandcuffed = false
 var badGuy #= false #set randomlly at the beggining
 var canMove = true
+var emote = false
 
 func _enter_tree():
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
@@ -77,11 +78,18 @@ func _physics_process(delta):
 			#velocity.y = JUMP_VELOCITY
 		
 		#BORRAR/CAMBIAR
-		var bailecito = false
+		
 		if Input.is_action_pressed("gesture1"):
-			print("bailecito")
-			bailecito = true
+			emote = true
+			playAnim.rpc("Wave")
+		elif  Input.is_action_pressed("gesture2"):
+			emote = true
+			playAnim.rpc("Point")
+		elif  Input.is_action_pressed("gesture3"):
+			emote = true
 			playAnim.rpc("Dance02")
+		else:
+			emote = false
 		
 		syncPos = global_position
 		# Get the input direction and handle the movement/deceleration.
@@ -93,7 +101,7 @@ func _physics_process(delta):
 			playAnim.rpc("Walk")
 		elif input_dir.y > 0:
 			playAnim.rpc("WalkBack")
-		elif !bailecito:
+		elif !emote:
 			playAnim.rpc("Idle")
 			
 		if direction: #is moving
