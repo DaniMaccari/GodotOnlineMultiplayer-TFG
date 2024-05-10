@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cuipw5r2ecyf3"]
+[gd_scene load_steps=10 format=3 uid="uid://cuipw5r2ecyf3"]
 
 [ext_resource type="Shader" path="res://Scripts/shaders/post_process_blur.gdshader" id="1_15l55"]
 [ext_resource type="Shader" path="res://Scripts/shaders/pp_band-dither.gdshader" id="1_x71hf"]
 [ext_resource type="PackedScene" uid="uid://qu5ogw1k4hkr" path="res://Scenes/test_movement_scene.tscn" id="2_bw7sd"]
 [ext_resource type="Shader" path="res://Scripts/shaders/lcd_post_process.gdshader" id="2_iwvhs"]
 [ext_resource type="Texture2D" uid="uid://b0ub3tqjyw46f" path="res://shaders/psxdither.png" id="2_pbqu7"]
+[ext_resource type="Texture2D" uid="uid://b22lrvck6kviv" path="res://Assets/circle_03.png" id="2_qrr1i"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2y51h"]
 shader = ExtResource("1_15l55")
@@ -29,6 +30,24 @@ shader_parameter/dither_tex = ExtResource("2_pbqu7")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -177.0
+offset_top = -166.0
+offset_right = 34523.0
+offset_bottom = 32134.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.01, 0.01)
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("2_qrr1i")
+stretch_mode = 3
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_2y51h")
