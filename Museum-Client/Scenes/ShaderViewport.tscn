@@ -32,6 +32,7 @@ shader_parameter/dither_tex = ExtResource("2_pbqu7")
 layer = 0
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

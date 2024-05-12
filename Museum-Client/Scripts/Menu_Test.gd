@@ -1,6 +1,6 @@
 extends Control
 
-@export var ADDRESS = "127.0.0.1"
+@export var ADDRESS = "fe80::fa86:3261:96c5:26cf%15"
 #IP6 maggi:"fe80::fa86:3261:96c5:26cf%15"
 #IP6 casa: "fe80::3857:e3:45c1:2b84%10"
 #IP local: "127.0.0.1"
