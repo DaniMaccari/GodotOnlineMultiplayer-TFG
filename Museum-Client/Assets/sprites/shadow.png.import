@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cb573peaxg1bn"
-path.s3tc="res://.godot/imported/circle_05.png-612564dfebe4f2d2c7abd9fc49194665.s3tc.ctex"
+uid="uid://c6mty6lpnvwod"
+path.s3tc="res://.godot/imported/shadow.png-757b252087d8a1f883bd11bc205d7e3a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/circle_05.png"
-dest_files=["res://.godot/imported/circle_05.png-612564dfebe4f2d2c7abd9fc49194665.s3tc.ctex"]
+source_file="res://Assets/sprites/shadow.png"
+dest_files=["res://.godot/imported/shadow.png-757b252087d8a1f883bd11bc205d7e3a.s3tc.ctex"]
 
 [params]
 
