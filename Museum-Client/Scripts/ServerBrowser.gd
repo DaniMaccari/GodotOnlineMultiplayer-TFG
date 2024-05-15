@@ -38,4 +38,6 @@ func _process(delta):
 
 
 func _on_broadcast_timer_timeout():
+	print("Bradcasting Game!")
+	RoomInfo.playerCount = GameManager.Players.size()
 	pass # Replace with function body.
