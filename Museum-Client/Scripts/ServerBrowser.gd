@@ -40,4 +40,7 @@ func _process(delta):
 func _on_broadcast_timer_timeout():
 	print("Bradcasting Game!")
 	RoomInfo.playerCount = GameManager.Players.size()
+	var data = JSON.stringify(RoomInfo)
+	var packet = data.to_ascii_buffer()
+	broadcaster.put_packet(packet)
 	pass # Replace with function body.
