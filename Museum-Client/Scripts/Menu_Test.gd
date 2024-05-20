@@ -34,6 +34,7 @@ func PlayerJustDisconnected(id):
 # called only in client side
 func ConnectedToServer():
 	print("connected to SERVER")
+	playerNick = $LineEdit.text
 	SendplayerInformation.rpc_id(1, playerNick, multiplayer.get_unique_id())
 
 func ConnectionFailed():
@@ -72,6 +73,7 @@ func hostGame():
 
 func _on_host_pressed():
 	hostGame()
+	playerNick = $LineEdit.text
 	SendplayerInformation(playerNick, multiplayer.get_unique_id())
 	$ServerBrowser.SetUpBroadCast($LineEdit.text +"'s server")
 	pass

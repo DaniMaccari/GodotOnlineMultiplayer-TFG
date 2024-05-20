@@ -59,6 +59,13 @@ script = ExtResource("2_nibp0")
 [node name="BroadcastTimer" type="Timer" parent="ServerBrowser"]
 wait_time = 1.5
 
+[node name="Label" type="Label" parent="ServerBrowser"]
+layout_mode = 0
+offset_left = 25.0
+offset_right = 100.0
+offset_bottom = 23.0
+text = "listening: "
+
 [connection signal="pressed" from="host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="start" to="." method="_on_start_pressed"]

@@ -42,6 +42,7 @@ func SetUpBroadCast(name):
 
 
 func _process(delta):
+	#print(listener.get_available_packet_count())
 	if listener.get_available_packet_count() > 0: #theres something
 		var serverip = listener.get_packet_ip()
 		var serverport = listener.get_packet_port()
@@ -68,8 +69,10 @@ func SetUp():
 	
 	if ok == OK:
 		print("Bound to Listen Port ", str(listenPort), " SUCCESSFUL")
+		$Label.text = "listening: true" #DEBUG
 	else:
 		print("FAILED to bind to listen port")
+		$Label.text = "listening: false" #DEBUG
 
 func CleanUp():
 	listener.close()
