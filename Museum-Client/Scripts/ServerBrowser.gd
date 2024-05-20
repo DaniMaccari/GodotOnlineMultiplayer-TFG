@@ -10,13 +10,18 @@ var RoomInfo = {
 	"playerCount" : 0
 }
 var broadcaster : PacketPeerUDP
-@export var listenPort : int = 8081
+var listener : PacketPeerUDP
+
 @export var broadcastPort : int = 8082
+@export var listenPort : int = 8081
+@export var broadcastAddress : String = '198.168.56.255'
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	broadcastTimer = $BroadcastTimer
-	pass # Replace with function body.
+	
+	SetUp() #call only when searching for lobby
+	pass
 
 func SetUpBroadCast(name):
 	RoomInfo.name = name
@@ -24,7 +29,7 @@ func SetUpBroadCast(name):
 	
 	broadcaster = PacketPeerUDP.new()
 	broadcaster.set_broadcast_enabled(true)
-	broadcaster.set_dest_address('198.168.56.255', listenPort)
+	broadcaster.set_dest_address(broadcastAddress, listenPort)
 	
 	var ok = broadcaster.bind(broadcastPort)
 	
@@ -32,8 +37,20 @@ func SetUpBroadCast(name):
 		print("Bound to Broadcast Port ", str(broadcastPort), " SUCCESSFUL")
 	else:
 		print("FAILED to bind to broadcast port")
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+		
+	$BroadcastTimer.start()
+
+
 func _process(delta):
+	if listener.get_available_packet_count() > 0: #theres something
+		var serverip = listener.get_packet_ip()
+		var serverport = listener.get_packet_port()
+		var bytes = listener.get_packet()
+		var data = bytes.get_string_from_ascii()
+		var roomInfo = JSON.parse_string(data)
+		
+		print("Server ip: ", serverip," port: ", serverport,"room info: ", roomInfo)
+	
 	pass
 
 
@@ -44,3 +61,28 @@ func _on_broadcast_timer_timeout():
 	var packet = data.to_ascii_buffer()
 	broadcaster.put_packet(packet)
 	pass # Replace with function body.
+
+func SetUp():
+	listener = PacketPeerUDP.new()
+	var ok = listener.bind(listenPort)
+	
+	if ok == OK:
+		print("Bound to Listen Port ", str(listenPort), " SUCCESSFUL")
+	else:
+		print("FAILED to bind to listen port")
+
+func CleanUp():
+	listener.close()
+	
+	$BroadcastTimer.stop()
+	if broadcaster != null:
+		broadcaster.close()
+	
+	
+func _exit_tree():
+	CleanUp()
+
+
+
+
+

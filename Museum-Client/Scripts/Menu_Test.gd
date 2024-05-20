@@ -73,6 +73,7 @@ func hostGame():
 func _on_host_pressed():
 	hostGame()
 	SendplayerInformation(playerNick, multiplayer.get_unique_id())
+	$ServerBrowser.SetUpBroadCast($LineEdit.text +"'s server")
 	pass
 
 func _on_join_pressed():

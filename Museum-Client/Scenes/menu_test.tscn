@@ -15,26 +15,40 @@ script = ExtResource("1_dwmi4")
 [node name="host" type="Button" parent="."]
 layout_mode = 0
 offset_left = 22.0
-offset_top = 67.0
+offset_top = 85.0
 offset_right = 91.0
-offset_bottom = 99.0
+offset_bottom = 117.0
 text = "HOST"
 
 [node name="join" type="Button" parent="."]
 layout_mode = 0
 offset_left = 106.0
-offset_top = 66.0
+offset_top = 84.0
 offset_right = 185.0
-offset_bottom = 99.0
+offset_bottom = 117.0
 text = "JOIN"
 
 [node name="start" type="Button" parent="."]
 layout_mode = 0
 offset_left = 199.0
-offset_top = 65.0
+offset_top = 83.0
 offset_right = 265.0
-offset_bottom = 101.0
+offset_bottom = 119.0
 text = "START"
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -122.0
+offset_top = 37.0
+offset_right = 121.0
+offset_bottom = 68.0
+grow_horizontal = 2
+text = "GUEST"
+clear_button_enabled = true
+middle_mouse_paste_enabled = false
 
 [node name="ServerBrowser" type="Control" parent="."]
 anchors_preset = 0
