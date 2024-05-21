@@ -17,7 +17,7 @@ func _ready():
 	multiplayer.connection_failed.connect(ConnectionFailed)
 	
 	if "--server" in OS.get_cmdline_args(): #si es iniciado con esta linea de comando
-		hostGame()
+		HostGame()
 	pass # Replace with function body.
 
 # called on both sides
@@ -56,14 +56,15 @@ func SendplayerInformation(nickName, id):
 			SendplayerInformation.rpc(GameManager.Players[i].name, i)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
-func hostGame():
+func HostGame():
 	peer = ENetMultiplayerPeer.new()
 	var error = peer.create_server(PORT, max_clients)
 	if error != OK:
 		print("coulndt host: ", error)
+		return
 		
 	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
 	
@@ -72,10 +73,10 @@ func hostGame():
 
 
 func _on_host_pressed():
-	hostGame()
+	HostGame()
 	playerNick = $LineEdit.text
 	SendplayerInformation(playerNick, multiplayer.get_unique_id())
-	$ServerBrowser.SetUpBroadCast($LineEdit.text +"'s server")
+	$ServerBrowser.SetUpBroadCast(playerNick +"'s server")
 	pass
 
 func _on_join_pressed():

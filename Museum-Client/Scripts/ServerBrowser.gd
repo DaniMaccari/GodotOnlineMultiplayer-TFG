@@ -14,7 +14,7 @@ var listener : PacketPeerUDP
 
 @export var broadcastPort : int = 8082
 @export var listenPort : int = 8081
-@export var broadcastAddress : String = '198.168.56.255'
+@export var broadcastAddress : String = "192.168.1.255"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,9 +23,21 @@ func _ready():
 	SetUp() #call only when searching for lobby
 	pass
 
+func SetUp():
+	listener = PacketPeerUDP.new()
+	var ok = listener.bind(listenPort)
+	
+	if ok == OK:
+		print("Bound to Listen Port ", str(listenPort), " SUCCESSFUL")
+		$Label.text = "listening: true" #DEBUG
+	else:
+		print("FAILED to bind to listen port")
+		$Label.text = "listening: false" #DEBUG
+
 func SetUpBroadCast(name):
 	RoomInfo.name = name
 	RoomInfo.playerCount = GameManager.Players.size()
+	print(GameManager.Players) #DEBUG
 	
 	broadcaster = PacketPeerUDP.new()
 	broadcaster.set_broadcast_enabled(true)
@@ -63,16 +75,6 @@ func _on_broadcast_timer_timeout():
 	broadcaster.put_packet(packet)
 	pass # Replace with function body.
 
-func SetUp():
-	listener = PacketPeerUDP.new()
-	var ok = listener.bind(listenPort)
-	
-	if ok == OK:
-		print("Bound to Listen Port ", str(listenPort), " SUCCESSFUL")
-		$Label.text = "listening: true" #DEBUG
-	else:
-		print("FAILED to bind to listen port")
-		$Label.text = "listening: false" #DEBUG
 
 func CleanUp():
 	listener.close()
