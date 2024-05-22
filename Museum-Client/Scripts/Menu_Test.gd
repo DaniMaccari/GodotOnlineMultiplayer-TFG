@@ -18,6 +18,8 @@ func _ready():
 	
 	if "--server" in OS.get_cmdline_args(): #si es iniciado con esta linea de comando
 		HostGame()
+		
+	$ServerBrowser.joinGame.connect(JoinByIp)
 	pass # Replace with function body.
 
 # called on both sides
@@ -76,18 +78,18 @@ func _on_host_pressed():
 	HostGame()
 	playerNick = $LineEdit.text
 	SendplayerInformation(playerNick, multiplayer.get_unique_id())
-	$ServerBrowser.SetUpBroadCast(playerNick +"'s server")
+	$ServerBrowser.SetUpBroadCast(playerNick)
 	pass
 
 func _on_join_pressed():
-	peer = ENetMultiplayerPeer.new()
-	peer.create_client(ADDRESS, PORT)
-	
-	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
-	
-	multiplayer.set_multiplayer_peer(peer)
+	JoinByIp(ADDRESS)
 	pass # Replace with function body.
 
+func JoinByIp(ip):
+	peer = ENetMultiplayerPeer.new()
+	peer.create_client(ip, PORT)
+	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
+	multiplayer.set_multiplayer_peer(peer)
 
 func _on_start_pressed():
 	GameManager.selectBadGuys()

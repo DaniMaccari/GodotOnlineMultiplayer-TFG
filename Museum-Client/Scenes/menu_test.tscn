@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbc4nsbg5kv04"]
+[gd_scene load_steps=4 format=3 uid="uid://dbc4nsbg5kv04"]
 
 [ext_resource type="Script" path="res://Scripts/Menu_Test.gd" id="1_dwmi4"]
 [ext_resource type="Script" path="res://Scripts/ServerBrowser.gd" id="2_nibp0"]
+[ext_resource type="PackedScene" uid="uid://cl5r84jnu3gem" path="res://Scenes/server_info.tscn" id="3_lm3tk"]
 
 [node name="Menu_Test" type="Control"]
 layout_mode = 3
@@ -15,25 +16,25 @@ script = ExtResource("1_dwmi4")
 [node name="host" type="Button" parent="."]
 layout_mode = 0
 offset_left = 22.0
-offset_top = 85.0
+offset_top = 43.0
 offset_right = 91.0
-offset_bottom = 117.0
+offset_bottom = 75.0
 text = "HOST"
 
 [node name="join" type="Button" parent="."]
 layout_mode = 0
 offset_left = 106.0
-offset_top = 84.0
+offset_top = 42.0
 offset_right = 185.0
-offset_bottom = 117.0
+offset_bottom = 75.0
 text = "JOIN"
 
 [node name="start" type="Button" parent="."]
 layout_mode = 0
 offset_left = 199.0
-offset_top = 83.0
+offset_top = 41.0
 offset_right = 265.0
-offset_bottom = 119.0
+offset_bottom = 77.0
 text = "START"
 
 [node name="LineEdit" type="LineEdit" parent="."]
@@ -42,29 +43,82 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -122.0
-offset_top = 37.0
+offset_top = 7.0
 offset_right = 121.0
-offset_bottom = 68.0
+offset_bottom = 38.0
 grow_horizontal = 2
 text = "GUEST"
 clear_button_enabled = true
 middle_mouse_paste_enabled = false
 
 [node name="ServerBrowser" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 141.0
+offset_right = -252.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("2_nibp0")
+serverInfo = ExtResource("3_lm3tk")
 
 [node name="BroadcastTimer" type="Timer" parent="ServerBrowser"]
 wait_time = 1.5
 
 [node name="Label" type="Label" parent="ServerBrowser"]
-layout_mode = 0
-offset_left = 25.0
-offset_right = 100.0
-offset_bottom = 23.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 75.0
+grow_vertical = 0
 text = "listening: "
+
+[node name="Panel" type="Panel" parent="ServerBrowser"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = -61.0
+offset_right = 283.0
+offset_bottom = 15.0
+
+[node name="PanelText" type="HBoxContainer" parent="ServerBrowser/Panel"]
+layout_mode = 2
+offset_left = 2.0
+offset_top = -1.0
+offset_right = 276.0
+offset_bottom = 22.0
+
+[node name="Name" type="Label" parent="ServerBrowser/Panel/PanelText"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name"
+
+[node name="Players" type="Label" parent="ServerBrowser/Panel/PanelText"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Players
+"
+
+[node name="ButtonSpace" type="Label" parent="ServerBrowser/Panel/PanelText"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ServerBrowser/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -137.0
+offset_top = -46.0
+offset_right = 137.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [connection signal="pressed" from="host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="join" to="." method="_on_join_pressed"]

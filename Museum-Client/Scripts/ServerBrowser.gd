@@ -1,7 +1,8 @@
 extends Control
 
-signal found_server
-signal server_removed
+signal found_server(ip, port, roomInfo)
+signal update_server(ip, port, roomInfo)
+signal joinGame(ip)
 
 var broadcastTimer : Timer
 
@@ -16,6 +17,7 @@ var listener : PacketPeerUDP
 @export var listenPort : int = 8081
 @export var broadcastAddress : String = "192.168.1.255"
 
+@export var serverInfo : PackedScene
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	broadcastTimer = $BroadcastTimer
@@ -50,7 +52,7 @@ func SetUpBroadCast(name):
 	else:
 		print("FAILED to bind to broadcast port")
 		
-	$BroadcastTimer.start()
+	broadcastTimer.start()
 
 
 func _process(delta):
@@ -63,7 +65,23 @@ func _process(delta):
 		var roomInfo = JSON.parse_string(data)
 		
 		print("Server ip: ", serverip," port: ", serverport,"room info: ", roomInfo)
-	
+		
+		for i in $Panel/VBoxContainer.get_children():
+			if i.name == roomInfo.name:
+				update_server.emit(serverip, serverport, roomInfo)
+				i.get_node("PlayerCount").text = str(roomInfo.playerCount)
+				return
+				
+		var currentInfo = serverInfo.instantiate()
+		currentInfo.name = roomInfo.name
+		currentInfo.ChangeIp(serverip)
+		currentInfo.get_node("Name").text = roomInfo.name
+		currentInfo.get_node("PlayerCount").text = str(roomInfo.playerCount)
+		$Panel/VBoxContainer.add_child(currentInfo)
+
+		currentInfo.joinGame.connect(JoinByIp)
+		found_server.emit(serverip, serverport, roomInfo)
+		
 	pass
 
 
@@ -79,7 +97,7 @@ func _on_broadcast_timer_timeout():
 func CleanUp():
 	listener.close()
 	
-	$BroadcastTimer.stop()
+	broadcastTimer.stop()
 	if broadcaster != null:
 		broadcaster.close()
 	
@@ -87,7 +105,8 @@ func CleanUp():
 func _exit_tree():
 	CleanUp()
 
-
+func JoinByIp(ip):
+	joinGame.emit(ip)
 
 
 
