@@ -4,6 +4,7 @@ extends CharacterBody3D
 const SPEED = 8.0
 const JUMP_VELOCITY = 5
 var MOUSE_SENSITIVITY = 0.5
+const HANDCUFFS_OPACITY = 0.3 #between 1.0 and 0.0 invisible
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -61,8 +62,10 @@ func _physics_process(delta):
 	
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		
+		
 		isLabel.text = ("is_handcuffed "+ str(isHandcuffed) )
 		hasLabel.text = ("has_handcuffs "+ str(hasHandcuffs) )
+		#$Camera3D/Control/HandcuffsTexture.visible = hasHandcuffs
 		
 		if isHandcuffed || !canMove:
 			return
@@ -153,6 +156,8 @@ func _input(event):
 				hit_player.get_handcuffed.rpc_id(hit_player.get_name().to_int()) #multiplayer.get_unique_id()
 				#print(hit_player.get_multiplayer_authority())
 				hasHandcuffs = false
+				
+				#$Camera3D/Control/HandcuffsTexture.modulate.a = HANDCUFFS_OPACITY
 		
 	elif Input.is_action_just_pressed("ui_paint"):
 		if badGuy and raycast.is_colliding(): #cuadro layer -> 2
