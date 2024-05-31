@@ -98,7 +98,7 @@ func _on_start_pressed():
 
 @rpc("any_peer", "call_local", "reliable")
 func StartGame():
-	
+	$ServerBrowser/BroadcastTimer.queue_free()
 	var scene = load("res://Scenes/ShaderViewport.tscn").instantiate()
 	get_tree().root.add_child(scene)
 	self.hide()

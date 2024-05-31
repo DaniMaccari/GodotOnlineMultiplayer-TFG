@@ -68,13 +68,16 @@ func _process(delta):
 		
 		for i in $Panel/VBoxContainer.get_children():
 			if i.name == roomInfo.name:
+				print("serverBrowser-ipSended: ", serverip)
 				update_server.emit(serverip, serverport, roomInfo)
 				i.get_node("PlayerCount").text = str(roomInfo.playerCount)
+				i.ChangeIp(serverip)
 				return
 				
 		var currentInfo = serverInfo.instantiate()
 		currentInfo.name = roomInfo.name
 		currentInfo.ChangeIp(serverip)
+		
 		currentInfo.get_node("Name").text = roomInfo.name
 		currentInfo.get_node("PlayerCount").text = str(roomInfo.playerCount)
 		$Panel/VBoxContainer.add_child(currentInfo)

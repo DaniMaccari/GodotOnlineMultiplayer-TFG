@@ -13,9 +13,14 @@ func _process(delta):
 	pass
 
 func ChangeIp(newIp):
-	myIp = newIp
+	print("ipRecieved: ", newIp)
+	if newIp == "":
+		$ButtonJoin.disabled = true
+	else:
+		myIp = newIp
+		$ButtonJoin.disabled = false
 
 func _on_button_join_pressed():
-	print("myIp ", myIp)
+	print("ipJoined: ", myIp)
 	joinGame.emit(myIp)
 
