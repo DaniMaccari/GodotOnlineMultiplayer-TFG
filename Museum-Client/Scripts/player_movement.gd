@@ -14,13 +14,13 @@ var syncRot = 0
 
 
 #@export var camera: Camera3D
-@onready var camera = $Camera3D
-@onready var raycast = $Camera3D/RayCast3D
+@onready var camera = $CameraPos/Camera3D
+@onready var raycast = $CameraPos/Camera3D/RayCast3D
 @onready var redball = $RedBall
-@onready var isLabel = $Camera3D/Control/handcuffedLabel
-@onready var hasLabel = $Camera3D/Control/hasHandcuffLabel
-@onready var roleLabel = $Camera3D/Control/roleLabel
-@onready var endLabel = $Camera3D/Control/endGameLabel
+@onready var isLabel = $CameraPos/Camera3D/Control/handcuffedLabel
+@onready var hasLabel = $CameraPos/Camera3D/Control/hasHandcuffLabel
+@onready var roleLabel = $CameraPos/Camera3D/Control/roleLabel
+@onready var endLabel = $CameraPos/Camera3D/Control/endGameLabel
 
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
@@ -61,7 +61,6 @@ func _physics_process(delta):
 	#if $MultiplayerSynchronizer.get_multiplayer_authority() == myID && !isHandcuffed:
 	
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
-		
 		
 		isLabel.text = ("is_handcuffed "+ str(isHandcuffed) )
 		hasLabel.text = ("has_handcuffs "+ str(hasHandcuffs) )
@@ -135,7 +134,10 @@ func _input(event):
 		if !canMove:
 			return
 		#event = event.make_input_local()
-		rotate_y(-deg_to_rad(event.relative.x) * MOUSE_SENSITIVITY)
+		if isHandcuffed:
+			$CameraPos.rotate_y(-deg_to_rad(event.relative.x) * MOUSE_SENSITIVITY)
+		else:
+			rotate_y(-deg_to_rad(event.relative.x) * MOUSE_SENSITIVITY)
 		camera.rotate_x(-deg_to_rad(event.relative.y) * MOUSE_SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, -PI/2 +.3, PI/2)
 		
@@ -144,8 +146,6 @@ func _input(event):
 	
 	elif Input.is_action_just_pressed("ui_handcuffs"):
 		if hasHandcuffs and raycast.is_colliding(): #player layer -> 1
-			
-			
 			
 			var hit_player = raycast.get_collider()
 			if hit_player is Paint:
@@ -161,7 +161,6 @@ func _input(event):
 		
 	elif Input.is_action_just_pressed("ui_paint"):
 		if badGuy and raycast.is_colliding(): #cuadro layer -> 2
-			
 			
 			var detected = raycast.get_collider()
 			if detected is Paint:
@@ -181,7 +180,8 @@ func get_handcuffed():
 	hasHandcuffs = false
 	
 	#show handcuff icon/animation
-	redball.visible = true
+	headRotation.visible = true
+	#redball.visible = true
 	print("Im handcuffed ", multiplayer.get_unique_id())
 	GameManager.HandCuffPlayer.rpc((str(self.name)).to_int()) #update handcuffed
 	camera.position = $CameraHandcuffed.position
