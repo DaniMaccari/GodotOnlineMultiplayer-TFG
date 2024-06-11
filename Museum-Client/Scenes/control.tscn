@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://ml8jhgn84vp2"]
+
+[ext_resource type="Script" path="res://Scripts/Client.gd" id="1_yu87j"]
+[ext_resource type="Script" path="res://Scripts/Server.gd" id="2_3cffi"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Client" type="Node" parent="."]
+script = ExtResource("1_yu87j")
+
+[node name="Server" type="Node" parent="."]
+script = ExtResource("2_3cffi")
+
+[node name="StartClient Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 8.0
+offset_right = 114.0
+offset_bottom = 39.0
+text = "Start Client"
+
+[node name="StartServer Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 197.0
+offset_top = 8.0
+offset_right = 297.0
+offset_bottom = 39.0
+text = "Start Server"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 53.0
+offset_right = 162.0
+offset_bottom = 84.0
+text = "Send Test Packed
+"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 275.0
+offset_top = 52.0
+offset_right = 297.0
+offset_bottom = 83.0
+text = "..."
+
+[connection signal="button_down" from="StartClient Button" to="Client" method="_on_start_client_button_button_down"]
+[connection signal="button_down" from="StartServer Button" to="Server" method="_on_start_server_button_button_down"]
+[connection signal="button_down" from="Button" to="Client" method="_on_button_button_down"]
+[connection signal="button_down" from="Button2" to="Server" method="_on_button_2_button_down"]
