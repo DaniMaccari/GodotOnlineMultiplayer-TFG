@@ -1,6 +1,6 @@
 extends Node
 
-var peer = WebSocketMultiplayerPeer.new()
+
 
 enum Message{
 	id,
@@ -14,6 +14,8 @@ enum Message{
 	checkIn
 }
 
+var peer = WebSocketMultiplayerPeer.new()
+var id = 0
 
 func _ready():
 	pass # Replace with function body.
@@ -27,6 +29,10 @@ func _process(delta):
 			var dataString = packet.get_string_from_utf8()
 			var data = JSON.parse_string(dataString)
 			print(data)
+			
+			if data.message == Message.id:
+				id = data.id
+				print("My ID: ", str(id))
 	pass
 
 func ConnecToServer(ip):

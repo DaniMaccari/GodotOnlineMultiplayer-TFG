@@ -13,11 +13,11 @@ enum Message{
 }
 
 var peer = WebSocketMultiplayerPeer.new()
-
+var users = {}
 
 func _ready():
 	peer.connect("peer_connected", peer_connected)
-	peer.connect("peer_connected", peer_connected)
+	peer.connect("peer_disconnected", peer_disconnected)
 
 
 
@@ -29,6 +29,18 @@ func _process(delta):
 			var dataString = packet.get_string_from_utf8()
 			var data = JSON.parse_string(dataString)
 			print(data)
+	pass
+
+func peer_connected(id):
+	print("Peer Connected: ", id)
+	users[id] = {
+		"id" : id,
+		"message" : Message.id
+	}
+	peer.get_peer(id).put_packet(JSON.stringify(users[id]).to_utf8_buffer())
+	pass
+
+func peer_disconnected(id):
 	pass
 
 func StartServer():
