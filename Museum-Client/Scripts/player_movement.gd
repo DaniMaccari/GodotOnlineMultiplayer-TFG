@@ -119,7 +119,7 @@ func _physics_process(delta):
 		move_and_slide()
 	
 	else:
-		syncPos = global_position.lerp(syncPos, 0.5)
+		syncPos = global_position.lerp(syncPos, 0.6)
 		
 
 func _input(event):
