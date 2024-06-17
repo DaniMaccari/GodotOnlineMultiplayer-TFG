@@ -46,7 +46,12 @@ func _ready():
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		myID = multiplayer.get_unique_id()
 		camera.current = true
-		headRotation.visible = false
+		
+		#ocultar cuerpo
+		$Armature/Skeleton3D/Cuerpo.visible = false
+		$"Armature/Skeleton3D/Pierna Der".visible = false
+		$"Armature/Skeleton3D/Pierna Izq".visible = false
+		#headRotation.visible = false
 		
 		state_machine.start("Idle")
 	setBadGuy(GameManager.Players[(str(self.name)).to_int()].badguy)
@@ -119,7 +124,7 @@ func _physics_process(delta):
 		move_and_slide()
 	
 	else:
-		syncPos = global_position.lerp(syncPos, 0.6)
+		syncPos = global_position.lerp(syncPos, 0.5)
 		
 
 func _input(event):

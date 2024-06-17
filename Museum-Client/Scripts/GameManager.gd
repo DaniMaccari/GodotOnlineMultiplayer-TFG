@@ -55,6 +55,7 @@ func setBadGuyDictionary(thisPlayer):
 @rpc("any_peer", "call_local")
 func HandCuffPlayer(playerID):
 	Players[playerID].handcuffed = true
+
 #func CallVandalsWin():
 	#
 	#for i in Players:
