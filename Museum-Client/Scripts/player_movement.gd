@@ -171,8 +171,8 @@ func _input(event):
 			var detected = raycast.get_collider()
 			if detected is Paint && !detected.vandalized:
 				#play animation 4 segs
-				playAnim.rpc("Paint")
-				
+				#playAnim.rpc("Paint")
+				SprayPainting()
 				print("player_movement -", "VANDALIZE")
 				detected.VandalicePainting.rpc()
 				if CountVandalized():
@@ -244,11 +244,20 @@ func callHandcuffedAnim():
 func BlockMovement():
 	headRotation.rotation.x = 0
 	canMove = false
-	spray.emitting = true
+
 
 func ActivateMovement():
 	canMove = true
 	spray.emitting = false
 
+func SprayPainting():
+	headRotation.rotation.x = 0
+	canMove = false
+	spray.emitting = true
+	$CameraPos/Camera3D/GPUParticles3D/SprayTimer.start()
 
+
+func _on_spray_timer_timeout():
+	canMove = true
+	spray.emitting = false
 
