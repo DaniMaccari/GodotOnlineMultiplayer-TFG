@@ -16,6 +16,7 @@ var syncRot = 0
 #@export var camera: Camera3D
 @onready var camera = $CameraPos/Camera3D
 @onready var raycast = $CameraPos/Camera3D/RayCast3D
+@onready var spray = $CameraPos/Camera3D/GPUParticles3D
 @onready var redball = $RedBall
 @onready var isLabel = $CameraPos/Camera3D/Control/handcuffedLabel
 @onready var hasLabel = $CameraPos/Camera3D/Control/hasHandcuffLabel
@@ -136,8 +137,8 @@ func _input(event):
 	
 	elif event is InputEventMouseMotion:
 		
-		if !canMove:
-			return
+		#if !canMove: #block camera movement when spraying
+			#return
 		#event = event.make_input_local()
 		if isHandcuffed:
 			$CameraPos.rotate_y(-deg_to_rad(event.relative.x) * MOUSE_SENSITIVITY)
@@ -168,7 +169,7 @@ func _input(event):
 		if badGuy and raycast.is_colliding(): #cuadro layer -> 2
 			
 			var detected = raycast.get_collider()
-			if detected is Paint:
+			if detected is Paint && !detected.vandalized:
 				#play animation 4 segs
 				playAnim.rpc("Paint")
 				
@@ -243,7 +244,11 @@ func callHandcuffedAnim():
 func BlockMovement():
 	headRotation.rotation.x = 0
 	canMove = false
+	spray.emitting = true
 
 func ActivateMovement():
 	canMove = true
+	spray.emitting = false
+
+
 
