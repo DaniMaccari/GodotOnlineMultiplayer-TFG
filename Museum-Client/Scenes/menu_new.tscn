@@ -1,0 +1,66 @@
+[gd_scene load_steps=2 format=3 uid="uid://cga13hm80u4po"]
+
+[ext_resource type="Script" path="res://Scripts/Menu_Test.gd" id="1_i2v3e"]
+
+[node name="Menu" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i2v3e")
+
+[node name="HostJoinScreen" type="Control" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/HostJoinScreen"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_right = 154.0
+grow_vertical = 2
+
+[node name="HostButton" type="Button" parent="Control/HostJoinScreen/VBoxContainer"]
+layout_mode = 2
+text = "host party"
+
+[node name="JoinButton" type="Button" parent="Control/HostJoinScreen/VBoxContainer"]
+layout_mode = 2
+text = "find game"
+
+[node name="HostScreen" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/HostScreen"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_right = 154.0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control/HostScreen/VBoxContainer"]
+layout_mode = 2
+text = "party name:"
+
+[node name="LineEdit" type="LineEdit" parent="Control/HostScreen/VBoxContainer"]
+layout_mode = 2
+text = "GUEST"
+middle_mouse_paste_enabled = false
+select_all_on_focus = true
+caret_blink = true

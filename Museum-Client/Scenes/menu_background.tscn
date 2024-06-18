@@ -1,0 +1,110 @@
+[gd_scene load_steps=13 format=3 uid="uid://856lgol2nrob"]
+
+[ext_resource type="Texture2D" uid="uid://cu8x5bls5lx2e" path="res://Assets/models/Museo Text Fixed 4_walls (1).jpg" id="1_f5fjf"]
+[ext_resource type="Texture2D" uid="uid://73rre8pfopj2" path="res://paintTextures/paintTest_1b.png" id="2_5au88"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ns5nk"]
+albedo_texture = ExtResource("1_f5fjf")
+
+[sub_resource type="BoxMesh" id="BoxMesh_wgvra"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g155x"]
+albedo_texture = ExtResource("1_f5fjf")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4hivf"]
+size = Vector3(1, 1, 0.048584)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w1lf2"]
+albedo_color = Color(0.74902, 0.341176, 0.0980392, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dhcql"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qomqc"]
+albedo_texture = ExtResource("2_5au88")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_unyen"]
+
+[sub_resource type="Animation" id="Animation_2lqgp"]
+resource_name = "blinking_light"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.8, 2.9, 3, 4.2, 4.3, 4.4, 4.5, 4.6),
+"transitions": PackedFloat32Array(1, 9.84914, 3, 0.277392, 4.75683, 4, 0.0853775, 2.5, 0.420448),
+"update": 0,
+"values": [4.2, 4.2, 0.0, 4.2, 4.2, 0.0, 4.2, 0.0, 4.2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7miw8"]
+_data = {
+"blinking_light": SubResource("Animation_2lqgp")
+}
+
+[node name="menu_final" type="Node3D"]
+
+[node name="Scene" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Scene"]
+transform = Transform3D(-4, 0, -3.01992e-08, 0, 4, 0, 6.03983e-07, 0, -0.2, 0.0715266, 2, 0)
+material_override = SubResource("StandardMaterial3D_ns5nk")
+gi_mode = 0
+mesh = SubResource("BoxMesh_wgvra")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Scene"]
+transform = Transform3D(-4, 0, -1.74846e-08, 0, 4, 0, 3.49691e-07, 0, -0.2, -3.92847, 2, 0)
+material_override = SubResource("StandardMaterial3D_g155x")
+gi_mode = 0
+mesh = SubResource("BoxMesh_wgvra")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Scene"]
+transform = Transform3D(-4, 0, -3.01992e-08, 0, 4, 0, 6.03983e-07, 0, -0.2, 0.0715266, 6, 0)
+material_override = SubResource("StandardMaterial3D_ns5nk")
+gi_mode = 0
+mesh = SubResource("BoxMesh_wgvra")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Scene"]
+transform = Transform3D(-4, 0, -1.74846e-08, 0, 4, 0, 3.49691e-07, 0, -0.2, -3.92847, 6, 0)
+material_override = SubResource("StandardMaterial3D_g155x")
+gi_mode = 0
+mesh = SubResource("BoxMesh_wgvra")
+
+[node name="Camera3D" type="Camera3D" parent="Scene"]
+transform = Transform3D(0.945519, 0, 0.325568, 0, 1, 0, -0.325568, 0, 0.945519, 0.897, 2.333, 1.394)
+fov = 78.1
+
+[node name="Paint" type="CollisionShape3D" parent="Scene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.31635, 0.123836)
+shape = SubResource("BoxShape3D_4hivf")
+
+[node name="marco" type="MeshInstance3D" parent="Scene/Paint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.05, 0, 0, 0)
+layers = 2
+material_override = SubResource("StandardMaterial3D_w1lf2")
+mesh = SubResource("BoxMesh_dhcql")
+
+[node name="pintura1" type="MeshInstance3D" parent="Scene/Paint"]
+transform = Transform3D(0.45, 0, 0, 0, -4.37114e-08, -0.45, 0, 1, -1.96701e-08, 0, 0, 0.03)
+layers = 2
+material_override = SubResource("StandardMaterial3D_qomqc")
+mesh = SubResource("PlaneMesh_unyen")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Scene"]
+transform = Transform3D(1, 0, 0, 0, 0.360811, 0.932639, 0, -0.932639, 0.360811, 1.00754, 3.44762, 0.561291)
+light_color = Color(1, 0.709804, 0.137255, 1)
+light_energy = 4.2
+light_indirect_energy = 2.0
+light_specular = 1.0
+spot_range = 2.41925
+spot_angle = 16.5606
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Scene/SpotLight3D"]
+libraries = {
+"": SubResource("AnimationLibrary_7miw8")
+}
+autoplay = "blinking_light"

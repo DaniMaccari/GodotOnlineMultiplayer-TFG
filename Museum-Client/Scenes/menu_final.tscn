@@ -1,0 +1,169 @@
+[gd_scene load_steps=5 format=3 uid="uid://d12r8s6wepq0g"]
+
+[ext_resource type="PackedScene" uid="uid://856lgol2nrob" path="res://Scenes/menu_background.tscn" id="1_jfw6k"]
+[ext_resource type="Script" path="res://Scripts/Menu_Final.gd" id="2_15i30"]
+[ext_resource type="Script" path="res://Scripts/ServerBrowser.gd" id="2_ols8r"]
+[ext_resource type="PackedScene" uid="uid://cl5r84jnu3gem" path="res://Scenes/server_info.tscn" id="3_hb16q"]
+
+[node name="Menu" type="CanvasLayer"]
+
+[node name="Background" type="Node3D" parent="."]
+
+[node name="menu_final" parent="Background" instance=ExtResource("1_jfw6k")]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="Background/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(320, 180)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Background/SubViewportContainer/SubViewport"]
+transform = Transform3D(0.946671, -0.000501692, 0.322203, 0.0054713, 0.99988, -0.0145185, -0.322157, 0.0155071, 0.946559, 0.775419, 2.2405, 1.21319)
+fov = 78.1
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_15i30")
+
+[node name="HostJoinScreen" type="Control" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/HostJoinScreen"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_right = 154.0
+grow_vertical = 2
+
+[node name="HostButton" type="Button" parent="Control/HostJoinScreen/VBoxContainer"]
+layout_mode = 2
+text = "HOST PARTY"
+
+[node name="JoinButton" type="Button" parent="Control/HostJoinScreen/VBoxContainer"]
+layout_mode = 2
+text = "FIND GAME"
+
+[node name="HostScreen" type="Control" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/HostScreen"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_right = 154.0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control/HostScreen/VBoxContainer"]
+layout_mode = 2
+text = "party name:"
+
+[node name="LineEdit" type="LineEdit" parent="Control/HostScreen/VBoxContainer"]
+layout_mode = 2
+text = "guest"
+middle_mouse_paste_enabled = false
+select_all_on_focus = true
+caret_blink = true
+
+[node name="CreateButton" type="Button" parent="Control/HostScreen/VBoxContainer"]
+layout_mode = 2
+text = "CREATE PARTY"
+
+[node name="ServerBrowser" type="Control" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 141.0
+offset_right = -252.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_ols8r")
+serverInfo = ExtResource("3_hb16q")
+
+[node name="Label" type="Label" parent="Control/ServerBrowser"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 165.0
+offset_top = -23.0
+offset_right = 240.0
+grow_vertical = 0
+text = "listening: "
+
+[node name="BroadcastTimer" type="Timer" parent="Control/ServerBrowser"]
+wait_time = 1.5
+
+[node name="Panel" type="Panel" parent="Control/ServerBrowser"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = -133.0
+offset_right = 153.0
+offset_bottom = 27.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/ServerBrowser/Panel"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = 141.0
+grow_vertical = 2
+
+[node name="WaitingScreen" type="Control" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/WaitingScreen"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_right = 154.0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control/WaitingScreen/VBoxContainer"]
+layout_mode = 2
+text = "waiting for the
+game to start"
+
+[node name="StartButton" type="Button" parent="Control/WaitingScreen/VBoxContainer"]
+layout_mode = 2
+text = "START GAME"
+
+[connection signal="pressed" from="Control/HostJoinScreen/VBoxContainer/HostButton" to="Control" method="_on_host_button_pressed"]
+[connection signal="pressed" from="Control/HostJoinScreen/VBoxContainer/JoinButton" to="Control" method="_on_join_button_pressed"]
+[connection signal="pressed" from="Control/HostScreen/VBoxContainer/CreateButton" to="Control" method="_on_create_button_pressed"]
+[connection signal="timeout" from="Control/ServerBrowser/BroadcastTimer" to="Control/ServerBrowser" method="_on_broadcast_timer_timeout"]
+[connection signal="pressed" from="Control/WaitingScreen/VBoxContainer/StartButton" to="Control" method="_on_start_button_pressed"]
