@@ -186,7 +186,10 @@ func get_handcuffed():
 	hasHandcuffs = false
 	
 	#show handcuff icon/animation
-	headRotation.visible = true
+	#headRotation.visible = true
+	$Armature/Skeleton3D/Cuerpo.visible = true
+	$"Armature/Skeleton3D/Pierna Der".visible = true
+	$"Armature/Skeleton3D/Pierna Izq".visible = true
 	#redball.visible = true
 	print("Im handcuffed ", multiplayer.get_unique_id())
 	GameManager.HandCuffPlayer.rpc((str(self.name)).to_int()) #update handcuffed
@@ -255,7 +258,6 @@ func SprayPainting():
 	canMove = false
 	spray.emitting = true
 	$CameraPos/Camera3D/GPUParticles3D/SprayTimer.start()
-
 
 func _on_spray_timer_timeout():
 	canMove = true
