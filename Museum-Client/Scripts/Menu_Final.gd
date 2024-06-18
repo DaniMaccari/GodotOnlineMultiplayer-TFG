@@ -91,7 +91,7 @@ func StartGame():
 	get_tree().root.add_child(scene)
 	
 	self.hide()
-	get_tree().get_parent().hide()
+	#get_tree().get_parent().hide()
 
 #START SCREEN ------------
 func ShowHostJoinScreen():
