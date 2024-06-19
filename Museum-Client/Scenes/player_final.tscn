@@ -407,6 +407,7 @@ mesh = SubResource("SphereMesh_kb1ud")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9702, 0)
+current = true
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0, 0, -5)
@@ -438,23 +439,23 @@ grow_vertical = 2
 layout_mode = 0
 offset_right = 180.0
 offset_bottom = 61.0
-scale = Vector2(0.279638, 0.347879)
+scale = Vector2(0.475385, 0.56)
 text = "is_handcuffed"
 
 [node name="hasHandcuffLabel" type="Label" parent="Camera3D/Control"]
 layout_mode = 0
-offset_top = 7.0
+offset_top = 12.0
 offset_right = 180.0
-offset_bottom = 68.0
-scale = Vector2(0.295455, 0.340944)
+offset_bottom = 73.0
+scale = Vector2(0.5, 0.622222)
 text = "has_handcuff"
 
 [node name="roleLabel" type="Label" parent="Camera3D/Control"]
 layout_mode = 0
-offset_top = 16.0
+offset_top = 29.0
 offset_right = 409.0
-offset_bottom = 74.0
-scale = Vector2(0.164166, 0.23866)
+offset_bottom = 87.0
+scale = Vector2(0.418483, 0.47732)
 
 [node name="endGameLabel" type="Label" parent="Camera3D/Control"]
 layout_mode = 1
@@ -462,9 +463,9 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -50.0
-offset_bottom = -27.0
+offset_top = -36.0
+offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.339213, 0.693719)
+scale = Vector2(0.471718, 0.633396)
 horizontal_alignment = 1

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Menu_Test.gd" id="1_dwmi4"]
 [ext_resource type="Script" path="res://Scripts/ServerBrowser.gd" id="2_nibp0"]
-[ext_resource type="PackedScene" uid="uid://cl5r84jnu3gem" path="res://Scenes/server_info.tscn" id="3_lm3tk"]
+[ext_resource type="PackedScene" path="res://Scenes/server_info.tscn" id="3_lm3tk"]
 
 [node name="Menu_Test" type="Control"]
 layout_mode = 3

@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://qu5ogw1k4hkr"]
+[gd_scene load_steps=8 format=3 uid="uid://qu5ogw1k4hkr"]
 
 [ext_resource type="Script" path="res://Scripts/SceneManager.gd" id="1_cc8ak"]
-[ext_resource type="PackedScene" uid="uid://cb1mb35u5hu5c" path="res://Scenes/player_CatCop.tscn" id="2_6he8f"]
+[ext_resource type="PackedScene" uid="uid://rwfk6eluoxu6" path="res://Scenes/player_CatCop.tscn" id="2_6he8f"]
 [ext_resource type="PackedScene" uid="uid://3r20sthoav0r" path="res://Scenes/paint_test.tscn" id="4_aspu1"]
-[ext_resource type="PackedScene" path="res://Scenes/Museo_ver4.tscn" id="4_jywxq"]
+[ext_resource type="PackedScene" uid="uid://bp57o20cby387" path="res://Scenes/Museo_ver4.tscn" id="4_jywxq"]
+[ext_resource type="PackedScene" uid="uid://mo247uf8urdg" path="res://Scenes/Decorations/bench.tscn" id="5_yh7ns"]
+[ext_resource type="PackedScene" uid="uid://612an4bxi3jq" path="res://Scenes/Decorations/vase.tscn" id="6_8k1ap"]
 
 [sub_resource type="Environment" id="Environment_x0j5o"]
 background_mode = 1
@@ -65,3 +67,9 @@ transform = Transform3D(3.93402e-07, 0, -3, 0, 3, 0, 3, 0, 3.93402e-07, 3.86884,
 environment = SubResource("Environment_x0j5o")
 
 [node name="Museo Text Fixed 4" parent="." instance=ExtResource("4_jywxq")]
+
+[node name="bench" parent="." instance=ExtResource("5_yh7ns")]
+transform = Transform3D(0.4, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -11.1229, 0, 0.903436)
+
+[node name="vase" parent="." instance=ExtResource("6_8k1ap")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -18.9313, 0, -2.66833)
