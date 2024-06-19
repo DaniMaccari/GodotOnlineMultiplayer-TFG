@@ -1,11 +1,12 @@
 [gd_scene load_steps=5 format=3 uid="uid://d12r8s6wepq0g"]
 
+[ext_resource type="Script" path="res://Scripts/Menu_FinalNew.gd" id="1_1gx28"]
 [ext_resource type="PackedScene" uid="uid://856lgol2nrob" path="res://Scenes/menu_background.tscn" id="1_jfw6k"]
-[ext_resource type="Script" path="res://Scripts/Menu_Final.gd" id="2_15i30"]
 [ext_resource type="Script" path="res://Scripts/ServerBrowser.gd" id="2_ols8r"]
 [ext_resource type="PackedScene" uid="uid://cl5r84jnu3gem" path="res://Scenes/server_info.tscn" id="3_hb16q"]
 
 [node name="Menu" type="CanvasLayer"]
+script = ExtResource("1_1gx28")
 
 [node name="Background" type="Node3D" parent="."]
 
@@ -34,7 +35,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_15i30")
 
 [node name="HostJoinScreen" type="Control" parent="Control"]
 visible = false
@@ -162,8 +162,12 @@ game to start"
 layout_mode = 2
 text = "START GAME"
 
+[connection signal="pressed" from="Control/HostJoinScreen/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="Control/HostJoinScreen/VBoxContainer/HostButton" to="Control" method="_on_host_button_pressed"]
+[connection signal="pressed" from="Control/HostJoinScreen/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
 [connection signal="pressed" from="Control/HostJoinScreen/VBoxContainer/JoinButton" to="Control" method="_on_join_button_pressed"]
+[connection signal="pressed" from="Control/HostScreen/VBoxContainer/CreateButton" to="." method="_on_create_button_pressed"]
 [connection signal="pressed" from="Control/HostScreen/VBoxContainer/CreateButton" to="Control" method="_on_create_button_pressed"]
 [connection signal="timeout" from="Control/ServerBrowser/BroadcastTimer" to="Control/ServerBrowser" method="_on_broadcast_timer_timeout"]
+[connection signal="pressed" from="Control/WaitingScreen/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Control/WaitingScreen/VBoxContainer/StartButton" to="Control" method="_on_start_button_pressed"]

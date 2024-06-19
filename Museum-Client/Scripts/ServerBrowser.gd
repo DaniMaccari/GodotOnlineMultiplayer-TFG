@@ -100,7 +100,8 @@ func _on_broadcast_timer_timeout():
 func CleanUp():
 	listener.close()
 	
-	broadcastTimer.stop()
+	if broadcastTimer != null:
+		broadcastTimer.stop()
 	if broadcaster != null:
 		broadcaster.close()
 	

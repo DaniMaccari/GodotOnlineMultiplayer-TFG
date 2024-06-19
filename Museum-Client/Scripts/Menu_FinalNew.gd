@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 @export var ADDRESS = "127.0.0.1"
 #IP local: "127.0.0.1"
@@ -8,6 +8,10 @@ var peer
 
 var playerNick = ""
 
+@onready var InitialScreen = $Control/HostJoinScreen
+@onready var HostScreen = $Control/HostScreen
+@onready var WaitScreen = $Control/WaitingScreen
+
 func _ready():
 	multiplayer.peer_connected.connect(PlayerJustConnected)
 	multiplayer.peer_disconnected.connect(PlayerJustDisconnected)
@@ -16,8 +20,7 @@ func _ready():
 	
 	if "--server" in OS.get_cmdline_args(): #si es iniciado con esta linea de comando
 		HostGame()
-		
-	$ServerBrowser.joinGame.connect(JoinByIp)
+	$Control/ServerBrowser.joinGame.connect(JoinByIp)
 	
 	ShowHostJoinScreen()
 
@@ -84,30 +87,31 @@ func JoinByIp(ip):
 
 @rpc("any_peer", "call_local", "reliable")
 func StartGame():
-	$ServerBrowser/BroadcastTimer.queue_free()
+	#$Control/ServerBrowser/BroadcastTimer.queue_free()
 	var scene = load("res://Scenes/ShaderViewport.tscn").instantiate()
 	get_tree().root.add_child(scene)
-
+	$Background.queue_free()
 	self.hide()
 	#get_tree().get_parent().hide()
 
 #START SCREEN ------------
 func ShowHostJoinScreen():
-	$HostJoinScreen.visible = true
+	$Control/HostJoinScreen.visible = true
 
 func _on_host_button_pressed():
-	$HostJoinScreen.visible = false
+	InitialScreen.visible = false
 	ShowHostScreen()
 
 func _on_join_button_pressed():
-	$HostJoinScreen.visible = false
+	$Control/HostJoinScreen.visible = false
 	ShowServerBrowser()
 	pass # Replace with function body.
 
 
 #HOST SCREEN ------------
 func ShowHostScreen():
-	$HostScreen.visible = true
+	print("Go To HostScren")
+	HostScreen.visible = true
 
 func HostGame():
 	peer = ENetMultiplayerPeer.new()
@@ -123,21 +127,21 @@ func HostGame():
 
 func _on_create_button_pressed():
 	HostGame()
-	playerNick = $HostScreen/VBoxContainer/LineEdit.text
+	playerNick = $Control/HostScreen/VBoxContainer/LineEdit.text
 	SendplayerInformation(playerNick, multiplayer.get_unique_id())
-	$ServerBrowser.SetUpBroadCast(playerNick)
+	$Control/ServerBrowser.SetUpBroadCast(playerNick)
 	
-	$HostScreen.visible = false
+	HostScreen.visible = false
 	ShowWaitingScreen()
 	#go to waiting screen
 
 #SERVER BROWSER -----------
 func ShowServerBrowser():
-	$ServerBrowser.visible = true
+	$Control/ServerBrowser.visible = true
 
 #WAITING SCREEN -----------
 func ShowWaitingScreen():
-	$WaitingScreen.visible = true
+	WaitScreen.visible = true
 
 func _on_start_button_pressed():
 	GameManager.selectBadGuys()
