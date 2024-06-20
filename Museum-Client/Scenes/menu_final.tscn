@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://d12r8s6wepq0g"]
+[gd_scene load_steps=6 format=3 uid="uid://d12r8s6wepq0g"]
 
 [ext_resource type="Script" path="res://Scripts/Menu_FinalNew.gd" id="1_1gx28"]
 [ext_resource type="PackedScene" uid="uid://856lgol2nrob" path="res://Scenes/menu_background.tscn" id="1_jfw6k"]
 [ext_resource type="Script" path="res://Scripts/ServerBrowser.gd" id="2_ols8r"]
 [ext_resource type="PackedScene" uid="uid://cl5r84jnu3gem" path="res://Scenes/server_info.tscn" id="3_hb16q"]
+[ext_resource type="Script" path="res://Scripts/WaitingScreen.gd" id="5_fk3fw"]
 
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource("1_1gx28")
@@ -144,6 +145,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("5_fk3fw")
+
+[node name="WaitingTimer" type="Timer" parent="Control/WaitingScreen"]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/WaitingScreen"]
 layout_mode = 1
@@ -156,7 +160,13 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="Control/WaitingScreen/VBoxContainer"]
 layout_mode = 2
 text = "waiting for the
-game to start"
+game to start
+."
+
+[node name="NumPlayersLabel" type="Label" parent="Control/WaitingScreen/VBoxContainer"]
+layout_mode = 2
+text = "0/8 players"
+horizontal_alignment = 1
 
 [node name="StartButton" type="Button" parent="Control/WaitingScreen/VBoxContainer"]
 layout_mode = 2
@@ -169,5 +179,6 @@ text = "START GAME"
 [connection signal="pressed" from="Control/HostScreen/VBoxContainer/CreateButton" to="." method="_on_create_button_pressed"]
 [connection signal="pressed" from="Control/HostScreen/VBoxContainer/CreateButton" to="Control" method="_on_create_button_pressed"]
 [connection signal="timeout" from="Control/ServerBrowser/BroadcastTimer" to="Control/ServerBrowser" method="_on_broadcast_timer_timeout"]
+[connection signal="timeout" from="Control/WaitingScreen/WaitingTimer" to="Control/WaitingScreen" method="_on_waiting_timer_timeout"]
 [connection signal="pressed" from="Control/WaitingScreen/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Control/WaitingScreen/VBoxContainer/StartButton" to="Control" method="_on_start_button_pressed"]
