@@ -6,7 +6,7 @@ extends Node2D
 func _ready():
 	var s = CharacterVOIP.instantiate()
 	add_child(s)
-	s.get_node("AudioManager").setupAudio(1)
+	s.get_node("AudioManager").setupAudio(multiplayer.get_unique_id())
 	
 	pass # Replace with function body
 

@@ -1,7 +1,10 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://dwup3lqdgaibw"]
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://dwup3lqdgaibw"]
 
 [sub_resource type="AudioEffectCapture" id="AudioEffectCapture_rpve5"]
 resource_name = "Capture"
+
+[sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_p1b25"]
+resource_name = "Limiter"
 
 [resource]
 bus/1/name = &"Mute"
@@ -18,3 +21,5 @@ bus/2/volume_db = 0.0
 bus/2/send = &"Mute"
 bus/2/effect/0/effect = SubResource("AudioEffectCapture_rpve5")
 bus/2/effect/0/enabled = true
+bus/2/effect/1/effect = SubResource("AudioEffectLimiter_p1b25")
+bus/2/effect/1/enabled = false

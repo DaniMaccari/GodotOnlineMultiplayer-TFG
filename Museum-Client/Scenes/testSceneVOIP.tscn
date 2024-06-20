@@ -1,11 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cgftp8tvhht6r"]
+[gd_scene load_steps=3 format=3 uid="uid://cgftp8tvhht6r"]
 
 [ext_resource type="Script" path="res://Scenes/testSceneVOIP.gd" id="1_3amc4"]
 [ext_resource type="PackedScene" uid="uid://bnbdvmkxvdr50" path="res://Scenes/character_voip.tscn" id="2_hnwbh"]
-[ext_resource type="PackedScene" uid="uid://ctac8nk2ts855" path="res://Scenes/audio_manager.tscn" id="2_vmmf1"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_3amc4")
 CharacterVOIP = ExtResource("2_hnwbh")
-
-[node name="AudioManager" parent="." instance=ExtResource("2_vmmf1")]

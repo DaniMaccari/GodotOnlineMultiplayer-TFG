@@ -1,11 +1,11 @@
 extends Node
 
-@onready var input : AudioStreamPlayer = $Input
+@onready var input : AudioStreamPlayer
 var index : int
 var effect : AudioEffectCapture
 var playback : AudioStreamGeneratorPlayback
 @export var outputPath : NodePath #so I can reference this later
-var inputThreshold = 0.005
+var inputThreshold = 0.05
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -15,10 +15,10 @@ func setupAudio(id):
 	set_multiplayer_authority(id)
 	
 	#if is_multiplayer_authority():
-	#	input.stream = AudioStreamMicrophone.new()
-	#	input.play()
-	#	index = AudioServer.get_bus_index("Record")
-	#	effect = AudioServer.get_bus_effect(index,0) #Capture
+	input.stream = AudioStreamMicrophone.new()
+	input.play()
+	index = AudioServer.get_bus_index("Record")
+	effect = AudioServer.get_bus_effect(index, 0) #Capture
 
 	playback = get_node(outputPath).get_stream_playback() 
 	
@@ -30,6 +30,9 @@ func _process(delta):
 	pass
 
 func processMic():
+	if effect == null:
+		return
+	
 	var sterioData : PackedVector2Array = effect.get_buffer(effect.get_frames_available())
 	
 	if sterioData.size() > 0:
@@ -42,6 +45,7 @@ func processMic():
 			var value = (sterioData[i].x + sterioData[i].y) / 2 #Average of the two values
 			maxAmplitude = max(value, maxAmplitude)
 			data[i] = value
+			
 		if maxAmplitude < inputThreshold: #For example, in mute
 			return
 	
