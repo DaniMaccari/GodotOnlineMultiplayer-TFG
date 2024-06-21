@@ -24,18 +24,21 @@ func _ready():
 	#paintTexture.material_override.set_texture(allTextures[paintID][0])
 
 func _process(delta):
-	
+	pass
 	#if is_multiplayer_authority() && vandalized:
 	#if $MultiplayerSynchronizer.get_multiplayer_authority() == 1 && vandalized:
-	if vandalized:
-		notPainted.visible = false
-		yesPainted.visible = true
+	#if vandalized:
+		#notPainted.visible = false
+		#yesPainted.visible = true
 
 
 @rpc("any_peer", "call_local")
 func VandalicePainting():
 	print("paint_script -", "PAINTINGG")
 	vandalized = true
+	if vandalized:
+		notPainted.visible = false
+		yesPainted.visible = true
 	GameManager.Paintings[str(self.name)].isVandalized = true
 	
 	var countVandalized = 0
