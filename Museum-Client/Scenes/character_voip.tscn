@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bnbdvmkxvdr50"]
+[gd_scene load_steps=2 format=3 uid="uid://chyd8og4dotqc"]
 
-[ext_resource type="PackedScene" uid="uid://ctac8nk2ts855" path="res://Scenes/audio_manager.tscn" id="1_3cce1"]
+[ext_resource type="PackedScene" uid="uid://dooy3dmvckbb" path="res://Scenes/audio_manager.tscn" id="1_3cce1"]
 
 [node name="CharacterVOIP" type="Node2D"]
 

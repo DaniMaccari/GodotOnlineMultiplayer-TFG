@@ -7,6 +7,7 @@ var playback : AudioStreamGeneratorPlayback
 @export var outputPath : NodePath #so I can reference this later
 var inputThreshold = 0.05
 var receiveBuffer := PackedFloat32Array()
+var myID
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,6 +15,8 @@ func _ready():
 
 func setupAudio(id):
 	input = $Input
+	
+	myID = id
 	set_multiplayer_authority(id)
 	
 	if is_multiplayer_authority():
@@ -50,7 +53,7 @@ func processMic():
 		if maxAmplitude < inputThreshold: # For example, in mute
 			return
 	
-		print(data)
+		print(data, myID)
 		#sendData.rpc(data)
 		#sendData(data)
 
@@ -63,5 +66,8 @@ func processVoice():
 		receiveBuffer.remove_at(0)
 
 @rpc("any_peer", "call_remote", "unreliable_ordered")
-func sendData(data : PackedFloat32Array):
-	receiveBuffer.append_array(data)
+func sendData(data : PackedFloat32Array, senderID : float):
+	#print(senderID)
+	if senderID != myID:
+		print(senderID, " ", myID)
+		receiveBuffer.append_array(data)
