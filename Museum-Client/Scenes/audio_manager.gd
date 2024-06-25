@@ -26,7 +26,7 @@ func setupAudio(id):
 		effect = AudioServer.get_bus_effect(index, 0) # Capture
 
 	playback = get_node(outputPath).get_stream_playback() 
-
+	print(playback)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if is_multiplayer_authority():
@@ -37,7 +37,7 @@ func _process(delta):
 func processMic():
 	if effect == null:
 		return
-	
+
 	var sterioData : PackedVector2Array = effect.get_buffer(effect.get_frames_available())
 	
 	if sterioData.size() > 0:
@@ -53,8 +53,8 @@ func processMic():
 		if maxAmplitude < inputThreshold: # For example, in mute
 			return
 	
-		print(data, myID)
-		#sendData.rpc(data)
+		print(data)
+		sendData.rpc(data)
 		#sendData(data)
 
 func processVoice():
@@ -68,6 +68,5 @@ func processVoice():
 @rpc("any_peer", "call_remote", "unreliable_ordered")
 func sendData(data : PackedFloat32Array, senderID : float):
 	#print(senderID)
-	if senderID != myID:
-		print(senderID, " ", myID)
-		receiveBuffer.append_array(data)
+	
+	receiveBuffer.append_array(data)
