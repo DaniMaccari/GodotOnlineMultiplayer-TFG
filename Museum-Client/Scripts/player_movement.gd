@@ -25,6 +25,7 @@ var syncRot = 0
 
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
+@onready var voiceChat = $AudioManager
 #@onready var animation_mode = animation_tree.get("parameters/playback")
 
 @onready var headRotation = $Armature/Skeleton3D/Cuerpo/HeadRotation
