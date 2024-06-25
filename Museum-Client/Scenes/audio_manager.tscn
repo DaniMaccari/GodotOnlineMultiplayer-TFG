@@ -6,3 +6,4 @@
 script = ExtResource("1_506ut")
 
 [node name="Input" type="AudioStreamPlayer" parent="."]
+bus = &"Record"

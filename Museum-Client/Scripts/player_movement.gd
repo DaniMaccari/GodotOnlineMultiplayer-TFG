@@ -55,8 +55,6 @@ func _ready():
 		#headRotation.visible = false
 		
 		state_machine.start("Idle")
-		
-		
 		#start voice capture
 		$AudioManager.setupAudio(multiplayer.get_unique_id())
 	

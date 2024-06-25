@@ -1,6 +1,6 @@
 extends Node
 
-@onready var input : AudioStreamPlayer
+@onready var input : AudioStreamPlayer = $Input
 var index : int
 var effect : AudioEffectCapture
 var playback : AudioStreamGeneratorPlayback
@@ -11,27 +11,26 @@ var myID
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	playback = get_node(outputPath).get_stream_playback() 
 
 func setupAudio(id):
-	input = $Input
 	
 	myID = id
 	set_multiplayer_authority(id)
 	
 	if is_multiplayer_authority():
+		print("multiplayer authority - ", id)
 		input.stream = AudioStreamMicrophone.new()
 		input.play()
 		index = AudioServer.get_bus_index("Record")
 		effect = AudioServer.get_bus_effect(index, 0) # Capture
 
 	playback = get_node(outputPath).get_stream_playback() 
-	print(playback)
+	print(playback, " - ", myID)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if is_multiplayer_authority():
 		processMic()
-	
 	processVoice()
 
 func processMic():
@@ -53,7 +52,7 @@ func processMic():
 		if maxAmplitude < inputThreshold: # For example, in mute
 			return
 	
-		print(data)
+		#print(data)
 		sendData.rpc(data)
 		#sendData(data)
 
@@ -62,11 +61,10 @@ func processVoice():
 		return
 		
 	for i in range(min(playback.get_frames_available(), receiveBuffer.size())):
+		print("alguna respuesta")
 		playback.push_frame(Vector2(receiveBuffer[0], receiveBuffer[0]))
 		receiveBuffer.remove_at(0)
 
 @rpc("any_peer", "call_remote", "unreliable_ordered")
-func sendData(data : PackedFloat32Array, senderID : float):
-	#print(senderID)
-	
+func sendData(data : PackedFloat32Array):
 	receiveBuffer.append_array(data)
