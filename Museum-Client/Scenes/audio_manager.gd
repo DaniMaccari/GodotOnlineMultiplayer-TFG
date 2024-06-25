@@ -11,8 +11,9 @@ var myID
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	playback = get_node(outputPath).get_stream_playback() 
-
+	#playback = get_node(outputPath).get_stream_playback() 
+	pass
+	
 func setupAudio(id):
 	
 	myID = id
@@ -59,9 +60,8 @@ func processMic():
 func processVoice():
 	if receiveBuffer.size() <= 0:
 		return
-		
+	
 	for i in range(min(playback.get_frames_available(), receiveBuffer.size())):
-		print("alguna respuesta")
 		playback.push_frame(Vector2(receiveBuffer[0], receiveBuffer[0]))
 		receiveBuffer.remove_at(0)
 

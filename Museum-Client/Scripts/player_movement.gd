@@ -56,7 +56,7 @@ func _ready():
 		
 		state_machine.start("Idle")
 		#start voice capture
-		$AudioManager.setupAudio(multiplayer.get_unique_id())
+		#$AudioManager.setupAudio(multiplayer.get_unique_id())
 	
 	setBadGuy(GameManager.Players[(str(self.name)).to_int()].badguy)
 	
