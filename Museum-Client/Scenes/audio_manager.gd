@@ -60,7 +60,7 @@ func processMic():
 func processVoice():
 	if receiveBuffer.size() <= 0:
 		return
-	
+	print("hola")
 	for i in range(min(playback.get_frames_available(), receiveBuffer.size())):
 		playback.push_frame(Vector2(receiveBuffer[0], receiveBuffer[0]))
 		receiveBuffer.remove_at(0)
