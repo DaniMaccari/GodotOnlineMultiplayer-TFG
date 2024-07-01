@@ -1,4 +1,4 @@
-extends Node
+extends Node3D
 
 @onready var input : AudioStreamPlayer = $Input
 var index : int
