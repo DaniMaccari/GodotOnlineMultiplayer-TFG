@@ -15,6 +15,7 @@ func SpawnPlayers():
 		currentPlayer.name = str(GameManager.Players[i].id)
 		GameManager.Players[i].handcuffed = false
 		add_child(currentPlayer)
+		currentPlayer.get_node("AudioManager").setupAudio(GameManager.Players[i].id)
 		for spawn in get_tree().get_nodes_in_group("SpawnLocationPoint"):
 			if spawn.name == str(index):
 				currentPlayer.global_position = spawn.global_position

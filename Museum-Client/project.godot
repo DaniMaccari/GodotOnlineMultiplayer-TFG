@@ -15,6 +15,10 @@ run/main_scene="res://Scenes/menu_test.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+driver/enable_input=true
+
 [autoload]
 
 GameManager="*res://Scripts/GameManager.gd"

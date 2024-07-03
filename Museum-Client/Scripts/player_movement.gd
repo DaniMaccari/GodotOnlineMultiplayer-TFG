@@ -25,6 +25,7 @@ var syncRot = 0
 
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
+@onready var voiceChat = $AudioManager
 #@onready var animation_mode = animation_tree.get("parameters/playback")
 
 @onready var headRotation = $Armature/Skeleton3D/Cuerpo/HeadRotation
@@ -55,6 +56,9 @@ func _ready():
 		#headRotation.visible = false
 		
 		state_machine.start("Idle")
+		#start voice capture
+		#$AudioManager.setupAudio(multiplayer.get_unique_id())
+	
 	setBadGuy(GameManager.Players[(str(self.name)).to_int()].badguy)
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
