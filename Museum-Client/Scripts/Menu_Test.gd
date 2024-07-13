@@ -2,6 +2,7 @@ extends Control
 
 @export var ADDRESS = "127.0.0.1"
 #IP local: "127.0.0.1"
+#private ipv6: "fe80::3857:e3:45c1:2b84%10"
 @export var PORT = 8080
 var max_clients = 8
 var peer

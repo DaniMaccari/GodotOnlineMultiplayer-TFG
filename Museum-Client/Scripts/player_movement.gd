@@ -62,7 +62,7 @@ func _ready():
 	setBadGuy(GameManager.Players[(str(self.name)).to_int()].badguy)
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	redball.visible = false
+	#redball.visible = false
 	
 func _physics_process(delta):
 	
