@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@export var ADDRESS = "127.0.0.1"
+@export var ADDRESS = "fe80::3e76:f326:f6e6:3761%20"
 #IP local: 
 #my ip "fe80::ae75:a49:f171:b91a%7"
 @export var PORT = 8080
