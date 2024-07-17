@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://612an4bxi3jq"]
+[gd_scene load_steps=9 format=3 uid="uid://612an4bxi3jq"]
 
 [ext_resource type="Texture2D" uid="uid://dqfsibwlfpfxu" path="res://Assets/Decoration/jarron_jarron_resize.jpg" id="1_t8jrv"]
+[ext_resource type="Texture2D" uid="uid://c6mty6lpnvwod" path="res://Assets/sprites/shadow.png" id="2_hv1pw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_up2ma"]
 resource_name = "Material"
@@ -46,6 +47,15 @@ shadow_mesh = SubResource("ArrayMesh_asya8")
 [sub_resource type="BoxShape3D" id="BoxShape3D_cf3mi"]
 size = Vector3(2.81274, 5.04828, 2.00592)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jrqja"]
+transparency = 1
+albedo_texture = ExtResource("2_hv1pw")
+
+[sub_resource type="QuadMesh" id="QuadMesh_iqicp"]
+material = SubResource("StandardMaterial3D_jrqja")
+size = Vector2(4, 3.7)
+orientation = 1
+
 [node name="vase" type="StaticBody3D"]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 collision_layer = 16
@@ -58,3 +68,7 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0159912, 2.46109, -0.032135)
 shape = SubResource("BoxShape3D_cf3mi")
+
+[node name="Shadow" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0.1)
+mesh = SubResource("QuadMesh_iqicp")

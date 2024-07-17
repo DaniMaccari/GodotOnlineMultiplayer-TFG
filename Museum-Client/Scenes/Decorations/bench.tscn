@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://mo247uf8urdg"]
+[gd_scene load_steps=9 format=3 uid="uid://mo247uf8urdg"]
 
 [ext_resource type="Texture2D" uid="uid://cw87u1i7kbdmo" path="res://Assets/Decoration/banco_banco_resize.jpg" id="1_suhia"]
+[ext_resource type="Texture2D" uid="uid://c6mty6lpnvwod" path="res://Assets/sprites/shadow.png" id="2_e6md2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0hiyc"]
 resource_name = "Material.001"
@@ -46,6 +47,15 @@ shadow_mesh = SubResource("ArrayMesh_qx1ng")
 [sub_resource type="BoxShape3D" id="BoxShape3D_vd3et"]
 size = Vector3(17.1634, 3.39319, 3.83594)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nuas6"]
+transparency = 1
+albedo_texture = ExtResource("2_e6md2")
+
+[sub_resource type="QuadMesh" id="QuadMesh_r16x7"]
+material = SubResource("StandardMaterial3D_nuas6")
+size = Vector2(4, 3.7)
+orientation = 1
+
 [node name="bench" type="StaticBody3D"]
 transform = Transform3D(0.4, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 collision_layer = 16
@@ -60,3 +70,7 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.123089, 1.22931, 0)
 shape = SubResource("BoxShape3D_vd3et")
+
+[node name="Shadow" type="MeshInstance3D" parent="."]
+transform = Transform3D(9, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0.05, 0.1)
+mesh = SubResource("QuadMesh_r16x7")

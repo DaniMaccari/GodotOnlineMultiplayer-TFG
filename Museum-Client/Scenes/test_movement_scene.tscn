@@ -49,27 +49,51 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1687, 5, 10.0708)
 [node name="PaintPosition" type="Node3D" parent="."]
 
 [node name="Paint_test" parent="PaintPosition" groups=["PaintLocationPoint"] instance=ExtResource("4_aspu1")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -10.7396, 5.19974, -4.02505)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -11.2076, 3.95716, -4.02505)
 
 [node name="Paint_test2" parent="PaintPosition" groups=["PaintLocationPoint"] instance=ExtResource("4_aspu1")]
-transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, -32.8533, 4.87786, 4.97546)
+transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, -32.8533, 3.97452, 4.97546)
 
 [node name="Paint_test3" parent="PaintPosition" groups=["PaintLocationPoint"] instance=ExtResource("4_aspu1")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -29.3665, 5.10568, -20.8157)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -28.1113, 3.86115, -20.8157)
 
 [node name="Paint_test4" parent="PaintPosition" groups=["PaintLocationPoint"] instance=ExtResource("4_aspu1")]
-transform = Transform3D(-1.31134e-07, 0, -3, 0, 3, 0, 3, 0, -1.31134e-07, 35.6599, 6.46699, 7.63441)
+transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 16.9226, 4.12963, 18.969)
 
 [node name="Paint_test5" parent="PaintPosition" groups=["PaintLocationPoint"] instance=ExtResource("4_aspu1")]
-transform = Transform3D(3.93402e-07, 0, -3, 0, 3, 0, 3, 0, 3.93402e-07, 3.86884, 3, -20.7532)
+transform = Transform3D(3.93402e-07, 0, -3, 0, 3, 0, 3, 0, 3.93402e-07, 3.86884, 3.94118, -20.2155)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_x0j5o")
 
 [node name="Museo Text Fixed 4" parent="." instance=ExtResource("4_jywxq")]
 
+[node name="bench2" parent="." instance=ExtResource("5_yh7ns")]
+transform = Transform3D(-0.4, 0, 4.37114e-08, 0, 0.5, 0, -3.49691e-08, 0, -0.5, 6.38331, 0, 15.8531)
+
 [node name="bench" parent="." instance=ExtResource("5_yh7ns")]
-transform = Transform3D(0.4, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -11.1229, 0, 0.903436)
+transform = Transform3D(0.4, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -11.385, 0, 6.05103)
 
 [node name="vase" parent="." instance=ExtResource("6_8k1ap")]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -18.9313, 0, -2.66833)
+transform = Transform3D(0.622445, 0, -0.502555, 0, 0.8, 0, 0.502555, 0, 0.622445, -3.62647, 0, -2.66833)
+
+[node name="vase2" parent="." instance=ExtResource("6_8k1ap")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -27.0332, 0, 14.5757)
+
+[node name="vase3" parent="." instance=ExtResource("6_8k1ap")]
+transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.8, 0, 0.8, 0, -3.49691e-08, 30.2529, 0, 18.6037)
+
+[node name="vase4" parent="." instance=ExtResource("6_8k1ap")]
+transform = Transform3D(-0.716358, 0, -0.356133, 0, 0.8, 0, 0.356133, 0, -0.716358, 0.329246, 0, -2.89259)
+
+[node name="bench3" parent="." instance=ExtResource("5_yh7ns")]
+transform = Transform3D(-0.4, 0, 4.37114e-08, 0, 0.5, 0, -3.49691e-08, 0, -0.5, 19.7068, -0.00708103, 6.27077)
+
+[node name="vase5" parent="." instance=ExtResource("6_8k1ap")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -31.0701, 0, -5.96849)
+
+[node name="vase6" parent="." instance=ExtResource("6_8k1ap")]
+transform = Transform3D(-3.49691e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.49691e-08, -0.493656, 0, -11.136)
+
+[node name="bench4" parent="." instance=ExtResource("5_yh7ns")]
+transform = Transform3D(2.64243e-08, 0, 0.5, 0, 0.5, 0, -0.35, 0, 3.7749e-08, -16.6388, -0.00708103, -12.6249)
