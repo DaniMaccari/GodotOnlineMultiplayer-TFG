@@ -1,8 +1,8 @@
 extends CanvasLayer
 
-@export var ADDRESS = "172.20.10.7"
-#IP local: 
-#my ip "fe80::ae75:a49:f171:b91a%7"
+@export var ADDRESS = "127.0.0.1"
+#IP local: "127.0.0.1"
+#private ipv6
 @export var PORT = 8080
 var max_clients = 8
 var peer
@@ -12,6 +12,8 @@ var playerNick = ""
 @onready var InitialScreen = $Control/HostJoinScreen
 @onready var HostScreen = $Control/HostScreen
 @onready var WaitScreen = $Control/WaitingScreen
+
+@onready var CustomIp = $Control/ServerBrowser/CustomIpLineEdit
 
 func _ready():
 	multiplayer.peer_connected.connect(PlayerJustConnected)
@@ -76,7 +78,9 @@ func SendplayerInformation(nickName, id):
 	#pass # Replace with function body.
 
 func JoinByIp(ip):
+	print(ip)
 	peer = ENetMultiplayerPeer.new()
+	print(peer)
 	peer.create_client(ip, PORT)
 	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
 	multiplayer.set_multiplayer_peer(peer)
@@ -147,13 +151,8 @@ func ShowWaitingScreen():
 func _on_start_button_pressed():
 	GameManager.selectBadGuys()
 	StartGame.rpc()
-	pass # Replace with function body.
-	
 
-
-
-
-
-
-
+func _on_join_custom_ip_buton_pressed():
+	print("custom IP", CustomIp.text)
+	JoinByIp(CustomIp.text)
 

@@ -114,8 +114,9 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 165.0
-offset_top = -23.0
+offset_top = -177.0
 offset_right = 240.0
+offset_bottom = -154.0
 grow_vertical = 0
 text = "listening: "
 
@@ -136,6 +137,36 @@ anchor_bottom = 1.0
 offset_left = -1.0
 offset_right = 141.0
 grow_vertical = 2
+
+[node name="SearchIpLabel" type="Label" parent="Control/ServerBrowser"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 165.0
+offset_top = -88.0
+offset_right = 240.0
+offset_bottom = -65.0
+grow_vertical = 0
+text = "search ip:"
+
+[node name="CustomIpLineEdit" type="LineEdit" parent="Control/ServerBrowser"]
+offset_left = 162.0
+offset_top = -29.0
+offset_right = 314.0
+offset_bottom = 2.0
+text = "ip addres"
+middle_mouse_paste_enabled = false
+select_all_on_focus = true
+caret_blink = true
+
+[node name="JoinCustomIpButon" type="Button" parent="Control/ServerBrowser"]
+offset_left = 162.0
+offset_top = 4.0
+offset_right = 240.0
+offset_bottom = 35.0
+text = "JOIN
+"
 
 [node name="WaitingScreen" type="Control" parent="Control"]
 visible = false
@@ -179,6 +210,7 @@ text = "START GAME"
 [connection signal="pressed" from="Control/HostScreen/VBoxContainer/CreateButton" to="." method="_on_create_button_pressed"]
 [connection signal="pressed" from="Control/HostScreen/VBoxContainer/CreateButton" to="Control" method="_on_create_button_pressed"]
 [connection signal="timeout" from="Control/ServerBrowser/BroadcastTimer" to="Control/ServerBrowser" method="_on_broadcast_timer_timeout"]
+[connection signal="pressed" from="Control/ServerBrowser/JoinCustomIpButon" to="." method="_on_join_custom_ip_buton_pressed"]
 [connection signal="timeout" from="Control/WaitingScreen/WaitingTimer" to="Control/WaitingScreen" method="_on_waiting_timer_timeout"]
 [connection signal="pressed" from="Control/WaitingScreen/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Control/WaitingScreen/VBoxContainer/StartButton" to="Control" method="_on_start_button_pressed"]
