@@ -35,16 +35,28 @@ visible = false
 [node name="SpawnLocation" type="Node3D" parent="."]
 
 [node name="0" type="Node3D" parent="SpawnLocation" groups=["SpawnLocationPoint"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.2511, 5, 3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 5, 1)
 
 [node name="1" type="Node3D" parent="SpawnLocation" groups=["SpawnLocationPoint"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1389, 5, -0.401627)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 5, 1)
 
 [node name="2" type="Node3D" parent="SpawnLocation" groups=["SpawnLocationPoint"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.07328, 5, 7.0553)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 5, 12)
 
 [node name="3" type="Node3D" parent="SpawnLocation" groups=["SpawnLocationPoint"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1687, 5, 10.0708)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 5, 12)
+
+[node name="4" type="Node3D" parent="SpawnLocation" groups=["SpawnLocationPoint"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 5, -1)
+
+[node name="5" type="Node3D" parent="SpawnLocation" groups=["SpawnLocationPoint"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 5, 7)
+
+[node name="6" type="Node3D" parent="SpawnLocation" groups=["SpawnLocationPoint"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 5, 13)
+
+[node name="7" type="Node3D" parent="SpawnLocation" groups=["SpawnLocationPoint"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 5, 7)
 
 [node name="PaintPosition" type="Node3D" parent="."]
 

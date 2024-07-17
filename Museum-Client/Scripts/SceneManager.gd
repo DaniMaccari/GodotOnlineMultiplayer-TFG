@@ -11,6 +11,10 @@ func SpawnPlayers():
 	
 	var index = 0
 	for i in GameManager.Players:
+		
+		if index >= GameManager.max_players: #in case +8 players dont crash
+			return
+		
 		var currentPlayer = PlayerScene.instantiate()
 		currentPlayer.name = str(GameManager.Players[i].id)
 		GameManager.Players[i].handcuffed = false

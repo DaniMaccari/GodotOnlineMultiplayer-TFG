@@ -151,6 +151,7 @@ grow_vertical = 0
 text = "search ip:"
 
 [node name="CustomIpLineEdit" type="LineEdit" parent="Control/ServerBrowser"]
+layout_mode = 0
 offset_left = 162.0
 offset_top = -29.0
 offset_right = 314.0
@@ -161,6 +162,7 @@ select_all_on_focus = true
 caret_blink = true
 
 [node name="JoinCustomIpButon" type="Button" parent="Control/ServerBrowser"]
+layout_mode = 0
 offset_left = 162.0
 offset_top = 4.0
 offset_right = 240.0

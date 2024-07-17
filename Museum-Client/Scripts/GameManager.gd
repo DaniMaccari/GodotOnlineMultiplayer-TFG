@@ -1,6 +1,7 @@
 extends Node
 
 var Players = {} #dictionary
+var max_players = 8
 #"name": nickName,
 #"id": id,
 #"score": 0,
