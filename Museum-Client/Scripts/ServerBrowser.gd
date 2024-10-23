@@ -55,7 +55,7 @@ func SetUpBroadCast(name):
 	broadcastTimer.start()
 
 
-func _process(delta):
+func _process(_delta):
 	#print(listener.get_available_packet_count())
 	if listener.get_available_packet_count() > 0: #theres something
 		var serverip = listener.get_packet_ip()
